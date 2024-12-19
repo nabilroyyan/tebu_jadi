@@ -4,6 +4,9 @@
 <head>
 
 <meta charset="utf-8">
+<!-- Tambahkan di bagian <head> -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <link rel="stylesheet" href="{{asset ('')}}admin/assets/css/remixicon.css">
@@ -22,6 +25,9 @@
 <title>admin</title>
 </head>
 <body>
+    <!-- Tambahkan sebelum </body> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
     <div class="preloader" id="preloader">
         <div class="preloader">
         <div class="waviy position-relative">
