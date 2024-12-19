@@ -5,4 +5,6 @@ use App\Http\Controllers\KebunController;
 
 Route::view('/','homeView/home');
 
+Route::view('/tes','viewAdmin.timbangan.index');
+
 Route::resource('kebun', KebunController::class);
