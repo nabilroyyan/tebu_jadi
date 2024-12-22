@@ -9,7 +9,8 @@ class Kebun extends Model
 {
     use HasFactory;
 
-    protected $table = 'db_master_kebun';  // Nama tabel
+    protected $table = 'db_master_kebun'; // Nama tabel
+
     protected $fillable = [
         'nomer_kontrak',
         'nama_kebun',
