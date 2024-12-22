@@ -62,5 +62,4 @@ php artisan migrate --seed
 php artisan serve
 ```
 
-### Sponsorship
-(https://github.com/user-attachments/assets/99c64407-7d4c-477c-b548-af6471ce43c2)
+
