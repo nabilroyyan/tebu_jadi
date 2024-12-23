@@ -63,12 +63,12 @@
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a href="clients.html" class="menu-link">
+                        <a href="http://localhost:8000/hutangs" class="menu-link">
                             Create
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="task.html" class="menu-link">
+                        <a href="http://localhost:8000/hutangs/1/edit" class="menu-link">
                             Detail
                         </a>
                 </ul>
@@ -80,12 +80,12 @@
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a href="clients.html" class="menu-link">
+                        <a href="http://localhost:8000/transaksis" class="menu-link">
                             Create
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="task.html" class="menu-link">
+                        <a href="http://localhost:8000/transaksis/1/edit" class="menu-link">
                             Detail
                         </a>
                 </ul>
