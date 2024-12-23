@@ -32,7 +32,7 @@ class KebunController extends Controller
         //     'nama_petani' => 'required|string|max:100',
         //     'status' => 'required|string|max:50',
         // ]);
-        
+
 
         $randomNumber = rand(10000, 99999);
 
@@ -53,6 +53,6 @@ class KebunController extends Controller
         ];
 
         Kebun::create($data);
-        return redirect('/kebun-store')->with('success', 'Data kebun berhasil ditambahkan.');
+        return redirect('/kebun')->with('success', 'Data kebun berhasil ditambahkan.');
     }
 }
