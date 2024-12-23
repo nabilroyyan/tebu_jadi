@@ -16,7 +16,7 @@ class KebunController extends Controller
             'kebuns' => Kebun::all()
 
         ];
-        return view('viewAdmin.kebun.detail', $data);
+        return view('viewAdmin.kebun.kebun', $data);
     }
 
 

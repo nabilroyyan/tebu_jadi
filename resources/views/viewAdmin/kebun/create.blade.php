@@ -100,6 +100,10 @@
 
 
         </div>
+        <button type="button" class="btn btn-secondary fw-semibold text-white py-3 px-4 mt-2 w-30" 
+        onclick="window.location.href='/kebun'">
+    Back
+</button>
         <button type="submit" class="btn btn-primary fw-semibold text-white py-3 px-4 mt-2 w-30">save</button>
     </form>
 

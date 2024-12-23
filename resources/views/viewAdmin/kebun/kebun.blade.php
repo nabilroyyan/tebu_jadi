@@ -9,8 +9,8 @@
                 <div class="d-flex  align-items-center bg-body justify-content-between ">
                     <h5 class="ms-5">Table Film</h5>
 
-                    <button type="button" class="btn btn-primary text-white me-5" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Tambah
+                    <button type="button" class="btn btn-primary text-white me-5" onclick="window.location.href='/kebun-create'">
+                        Tambah
                     </button>
                 </div>
             </div>
@@ -22,6 +22,7 @@
                             <table class="table align-middle" id="myTable">
                                 <thead>
                                     <tr>
+                                        <th scope="col">no</th>
                                         <th scope="col">nomer kontrak</th>
                                         <th scope="col">nama kebun</th>
                                         <th scope="col">alamat</th>
@@ -36,6 +37,9 @@
                                 <tbody>
                                     @foreach ($kebuns as $item)
                                         <tr>
+                                            <td>
+                                                {{ $loop->iteration }}
+                                            </td>
                                             <td>
                                                 {{ $item->nomer_kontrak }}
                                             </td>
