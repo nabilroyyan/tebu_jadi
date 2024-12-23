@@ -5,7 +5,7 @@
 @section('content')
     
 
-<form action="/kebun-create" method="POST">
+<form action="/kebun-store" method="POST">
     @csrf
     <div class="row">
         <div class="col-lg-6">
