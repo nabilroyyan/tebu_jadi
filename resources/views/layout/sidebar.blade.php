@@ -64,12 +64,12 @@
                 <ul class="menu-sub">
                     <li class="menu-item">
                         <a href="http://localhost:8000/hutangs" class="menu-link">
-                            Create
+                            Index user: petani
                         </a>
                     </li>
                     <li class="menu-item">
                         <a href="http://localhost:8000/hutangs/1/edit" class="menu-link">
-                            Detail
+                            Index user: admin
                         </a>
                 </ul>
             </li>
@@ -81,12 +81,12 @@
                 <ul class="menu-sub">
                     <li class="menu-item">
                         <a href="http://localhost:8000/transaksis" class="menu-link">
-                            Create
+                            Index user: petani
                         </a>
                     </li>
                     <li class="menu-item">
                         <a href="http://localhost:8000/transaksis/1/edit" class="menu-link">
-                            Detail
+                            Index user: admin
                         </a>
                 </ul>
             </li>
