@@ -15,7 +15,7 @@ class CreateDbMasterKebunTable extends Migration
     {
         Schema::create('db_master_kebun', function (Blueprint $table) {
             $table->unsignedBigInteger('id_master_kebun')->autoIncrement();
-            $table->string('nomer_kontrak');
+            $table->string('nomer_kontrak')->unique();
             $table->string('nama_kebun', 100);
             $table->string('alamat', 255);
             $table->string('luas');

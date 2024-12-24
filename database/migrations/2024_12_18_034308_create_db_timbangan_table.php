@@ -12,9 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tb_timbangan', function (Blueprint $table) {
-            $table->string('no_spa')->primary();
+            $table->unsignedBigInteger('id_timbangan')->autoIncrement();
+            $table->string('no_spa');
             $table->date('tanggal');
-            $table->string('noKontrak');
+            $table->string('nomer_Kontrak');
             $table->string('nama_kebun');
             $table->string('nama_petani');
             $table->unsignedInteger('nopol');
@@ -29,6 +30,11 @@ return new class extends Migration
             $table->string('jenis_tebu');
             $table->string('brix');
             $table->timestamps();
+
+
+            $table->foreign('nomer_kontrak')->references('nomer_kontrak')->on('db_master_kebun')->onDelete('cascade');
+            $table->foreign('nama_kebun')->references('nama_kebun')->on('db_master_kebun')->onDelete('cascade');
+            $table->foreign('nama_petani')->references('nama_petani')->on('db_master_kebun')->onDelete('cascade');
         });
     }
 

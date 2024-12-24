@@ -9,7 +9,8 @@ class Kebun extends Model
 {
     use HasFactory;
 
-    protected $table = 'db_master_kebun'; // Nama tabel
+    protected $table = 'db_master_kebun';
+
     protected $primaryKey = 'id_master_kebun';
 
     protected $fillable = [
@@ -20,6 +21,13 @@ class Kebun extends Model
         'kecamatan',
         'kabupaten',
         'nama_petani',
-        'status',
     ];
+
+    /**
+     * Relasi dengan tb_timbangan
+     */
+    public function timbangans()
+    {
+        return $this->hasMany(tb_Timbangan::class, 'nomer_kontrak', 'nomer_kontrak');
+    }
 }
