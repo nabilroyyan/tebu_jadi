@@ -13766,7 +13766,7 @@ textarea.form-control {
   padding: 8px;
   border-radius: 50%;
   border: 2px solid transparent;
-  animation: rotate linear 3.5s infinite;
+  animation: rotate linear 1s infinite;
   border-top-color: #757FEF;
   border-border-bottom: #757FEF;
 }
