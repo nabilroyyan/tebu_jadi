@@ -46,13 +46,13 @@
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a href="clients.html" class="menu-link">
+                        <a href="/timbangan-create" class="menu-link">
                             Create
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="task.html" class="menu-link">
-                            Detail
+                        <a href="/timbangan" class="menu-link">
+                            Tabel
                         </a>
                 </ul>
             </li>

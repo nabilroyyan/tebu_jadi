@@ -32,7 +32,9 @@ Route::get('/kebun/{id}/delete', [KebunController::class, 'destroy']);
 
 
 Route::get('/timbangan', [TimbanganController::class, 'index'])->name('timbangan.index');
-Route::post('/timbangan', [TimbanganController::class, 'store'])->name('timbangan.store');
+Route::get('/timbangan-create', [TimbanganController::class, 'create'])->name('timbangan.create');
+Route::post('/timbangan-store', [TimbanganController::class, 'store'])->name('timbangan.store');
+Route::get('/kebun-details/{id}', [TimbanganController::class, 'getKebunDetails']);
 Route::get('/timbangan/{id}/edit', [TimbanganController::class, 'edit'])->name('timbangan.edit');
 Route::put('/timbangan/{id}', [TimbanganController::class, 'update'])->name('timbangan.update');
 Route::delete('/timbangan/{id}', [TimbanganController::class, 'destroy'])->name('timbangan.destroy');

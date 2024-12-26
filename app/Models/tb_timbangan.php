@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class tb_timbangan extends Model
+class Tb_Timbangan extends Model
 {
     use HasFactory;
-    protected $table = 'tb_timbangan'; 
+    protected $table = 'tb_timbangan';
     protected $fillable = [
         'no_spa',
         'tanggal',
-        'nomer_kontrak',
+        'master_kebun_id',
         'nama_kebun',
         'nama_petani',
         'nopol',

@@ -15,26 +15,25 @@ return new class extends Migration
             $table->unsignedBigInteger('id_timbangan')->autoIncrement();
             $table->string('no_spa');
             $table->date('tanggal');
-            $table->string('nomer_Kontrak');
+
+            $table->unsignedBigInteger('master_kebun_id');
+            $table->foreign('master_kebun_id')->references('id_master_kebun')->on('db_master_kebun');
+
+
             $table->string('nama_kebun');
             $table->string('nama_petani');
-            $table->unsignedInteger('nopol');
+            $table->string('nopol');
             $table->string('sopir');
             $table->enum('status_timbang', ['proses', 'selesai_ditimbang']);
-            $table->float('bruto', 10, 2);
-            $table->float('tara', 10, 2);
-            $table->float('neto', 10, 2);
+            $table->float('bruto', 10, 2)->nullable();
+            $table->float('tara', 10, 2)->nullable();
+            $table->float('neto', 10, 2)->nullable();
             $table->date('tgl_masuk_pos')->nullable();
             $table->datetime('tgl_timb_masuk')->nullable();
             $table->datetime('tgl_timb_keluar')->nullable();
             $table->string('jenis_tebu');
             $table->string('brix');
             $table->timestamps();
-
-
-            $table->foreign('nomer_kontrak')->references('nomer_kontrak')->on('db_master_kebun')->onDelete('cascade');
-            $table->foreign('nama_kebun')->references('nama_kebun')->on('db_master_kebun')->onDelete('cascade');
-            $table->foreign('nama_petani')->references('nama_petani')->on('db_master_kebun')->onDelete('cascade');
         });
     }
 
@@ -43,3 +42,4 @@ return new class extends Migration
         Schema::dropIfExists('tb_timbangan');
     }
 };
+ 
