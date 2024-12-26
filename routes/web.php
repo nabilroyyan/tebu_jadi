@@ -17,3 +17,7 @@ Route::post('/kebun-store', [KebunController::class, 'store']);
 Route::get('/kebun/{id}/edit', [KebunController::class, 'edit']);
 Route::post('/kebun/{id}/update', [KebunController::class, 'update']);
 Route::get('/kebun/{id}/delete', [KebunController::class, 'delete']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
