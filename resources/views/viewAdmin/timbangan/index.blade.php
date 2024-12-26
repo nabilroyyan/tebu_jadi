@@ -158,8 +158,8 @@
                                                 </td>
                                                 <td>
                                                     <div class="dropdown action-opt">
-                                                        <button class="btn bg p-0" type="button"
-                                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <button class="btn bg p-0" type="button" data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
                                                             <i data-feather="more-horizontal"></i>
                                                         </button>
                                                         <ul

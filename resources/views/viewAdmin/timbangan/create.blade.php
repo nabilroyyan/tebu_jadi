@@ -1,118 +1,149 @@
 @extends('layout.mainLayout')
 
-
-
 @section('content')
+    <form action="/timbangan-store" method="POST">
+        @csrf
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group mb-4">
+                    <label class="label">Tanggal</label>
+                    <div class="form-group position-relative">
+                        <input type="date" name="tanggal" class="form-control text-dark ps-5 h-58">
+                        <i
+                            class="ri-calendar-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group mb-4">
+                    <label class="label">Nomor Kontrak</label>
+                    <div class="form-group position-relative">
+                        <select id="nomer_kontrak" name="master_kebun_id" class="form-select form-control text-dark ps-5 h-58">
+                            <option selected disabled>Pilih Nomor Kontrak</option>
+                            @foreach ($kebuns as $kebun)
+                                <option value="{{ $kebun->id_master_kebun }}">{{ $kebun->nomer_kontrak }} -
+                                    {{ $kebun->nama_kebun }}</option>
+                            @endforeach
+                        </select>
+                        <i class="ri-contract-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="form-group mb-4">
+                    <label class="label">Nama Kebun</label>
+                    <div class="form-group position-relative">
+                        <input id="nama_kebun" type="text" name="nama_kebun" class="form-control text-dark ps-5 h-58"
+                            placeholder="Masukkan Nama Kebun" readonly>
+                        <i class="ri-landscape-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="form-group mb-4">
+                    <label class="label">Nama Petani</label>
+                    <div class="form-group position-relative">
+                        <input id="nama_petani" type="text" name="nama_petani" class="form-control text-dark ps-5 h-58"
+                            placeholder="Masukkan Nama Petani" readonly>
+                        <i class="ri-user-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group mb-4">
+                    <label class="label">Nopol</label>
+                    <div class="form-group position-relative">
+                        <input type="text" name="nopol" class="form-control text-dark ps-5 h-58"
+                            placeholder="Masukkan Nomor Polisi">
+                        <i
+                            class="ri-car-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="form-group mb-4">
+                    <label class="label">Sopir</label>
+                    <div class="form-group position-relative">
+                        <input type="text" name="sopir" class="form-control text-dark ps-5 h-58"
+                            placeholder="Masukkan Nama Sopir">
+                        <i
+                            class="ri-user-2-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                    </div>
+                </div>
+            </div>
+
+            {{-- <div class="col-lg-6">
+                <div class="form-group mb-4">
+                    <label class="label">Status Timbang</label>
+                    <div class="form-group position-relative">
+                        <select name="status_timbang" class="form-select form-control text-dark ps-5 h-58">
+                            <option value="" selected disabled>Pilih Status</option>
+                            <option value="proses">Proses</option>
+                            <option value="selesai_ditimbang">Selesai Ditimbang</option>
+                        </select>
+                        <i
+                            class="ri-checkbox-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                    </div>
+                </div>
+            </div> --}}
+
+
+
+            <div class="col-lg-6">
+                <div class="form-group mb-4">
+                    <label class="label">Jenis Tebu</label>
+                    <div class="form-group position-relative">
+                        <input type="text" name="jenis_tebu" class="form-control text-dark ps-5 h-58"
+                            placeholder="Masukkan Jenis Tebu">
+                        <i
+                            class="ri-leaf-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="form-group mb-4">
+                    <label class="label">Brix (%)</label>
+                    <div class="form-group position-relative">
+                        <input type="text" name="brix" class="form-control text-dark ps-5 h-58"
+                            placeholder="Masukkan Brix">
+                        <i
+                            class="ri-line-chart-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <button type="button" class="btn btn-secondary fw-semibold text-white py-3 px-4 mt-2 w-30"
+            onclick="window.location.href='/timbangan'">Back</button>
+        <button type="submit" class="btn btn-primary fw-semibold text-white py-3 px-4 mt-2 w-30">Save</button>
+    </form>
+
+
+    <script>
+        document.getElementById('nomer_kontrak').addEventListener('change', function () {
+            const kebunId = this.value;
     
-
-<form>
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="form-group mb-4">
-                <label class="label">First Name</label>
-                <div class="form-group position-relative">
-                    <input type="text" class="form-control text-dark ps-5 h-58" placeholder="Enter Name">
-                    <i class="ri-user-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="form-group mb-4">
-                <label class="label">Last Name</label>
-                <div class="form-group position-relative">
-                    <input type="text" class="form-control text-dark ps-5 h-58" placeholder="Enter Name">
-                    <i class="ri-user-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="form-group mb-4">
-                <label class="label">Email Address</label>
-                <div class="form-group position-relative">
-                    <input type="email" class="form-control text-dark ps-5 h-58" placeholder="Enter Email Address">
-                    <i class="ri-mail-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="form-group mb-4">
-                <label class="label">Phone</label>
-                <div class="form-group position-relative">
-                    <input type="number" class="form-control text-dark ps-5 h-58" placeholder="Enter Phone Number">
-                    <i class="ri-phone-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-12">
-            <div class="form-group mb-4">
-                <label class="label">Address</label>
-                <div class="form-group position-relative">
-                    <input type="number" class="form-control text-dark ps-5 h-58" placeholder="Your Location">
-                    <i class="ri-map-pin-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-12">
-            <div class="form-group mb-4">
-                <label class="label">Country</label>
-                <div class="form-group position-relative">
-                    <select class="form-select form-control ps-5 h-58" aria-label="Default select example">
-                        <option selected class="text-dark">United Kingdom</option>
-                        <option value="1" class="text-dark">United States</option>
-                        <option value="2" class="text-dark">Canada</option>
-                        <option value="3" class="text-dark">France</option>
-                    </select>
-                    <i class="ri-map-2-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="form-group mb-4">
-                <label class="label">Town/City</label>
-                <div class="form-group position-relative">
-                    <select class="form-select form-control ps-5 h-58" aria-label="Default select example">
-                        <option selected class="text-dark">California</option>
-                        <option value="1" class="text-dark">United States</option>
-                        <option value="2" class="text-dark">Canada</option>
-                        <option value="3" class="text-dark">France</option>
-                    </select>
-                    <i class="ri-list-ordered position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="form-group mb-4">
-                <label class="label">State</label>
-                <div class="form-group position-relative">
-                    <select class="form-select form-control ps-5 h-58" aria-label="Default select example">
-                        <option selected class="text-dark">South poal evenue state 4C</option>
-                        <option value="1" class="text-dark">United States</option>
-                        <option value="2" class="text-dark">Canada</option>
-                        <option value="3" class="text-dark">France</option>
-                    </select>
-                    <i class="ri-font-size position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="form-group mb-4">
-                <label class="label">Zip Code</label>
-                <div class="form-group position-relative">
-                    <input type="number" class="form-control ps-5 text-gray-light h-58" placeholder="Enter number">
-                    <i class="ri-hashtag position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-12">
-            <div class="form-group mb-0">
-                <label class="label">Order Notes :</label>
-                <div class="form-group position-relative">
-                    <textarea class="form-control ps-5 text-dark" placeholder="Some demo text ... " cols="30" rows="5"></textarea>
-                    <i class="ri-information-line position-absolute top-0 start-0 fs-20 text-gray-light ps-20 pt-2"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
-
+            if (kebunId) {
+                fetch(`/kebun-details/${kebunId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Isi kolom nama kebun dan nama petani
+                        document.getElementById('nama_kebun').value = data.nama_kebun;
+                        document.getElementById('nama_petani').value = data.nama_petani;
+                    })
+                    .catch(error => console.error('Error:', error));
+            } else {
+                // Kosongkan kolom jika tidak ada yang dipilih
+                document.getElementById('nama_kebun').value = '';
+                document.getElementById('nama_petani').value = '';
+            }
+        });
+    </script>
+    
 @endsection

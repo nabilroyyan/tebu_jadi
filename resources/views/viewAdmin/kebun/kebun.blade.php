@@ -7,7 +7,7 @@
         <div class="col-lg-12">
             <div class="card bg-white border-0 rounded-10 mb-4">
                 <div class="d-flex  align-items-center bg-body justify-content-between ">
-                    <h5 class="ms-5">Table Film</h5>
+                    <h5 class="ms-5">Table Kebun</h5>
 
                     <button type="button" class="btn btn-primary text-white me-5" onclick="window.location.href='/kebun-create'">
                         Tambah
@@ -90,14 +90,14 @@
 
                                                         <li>
                                                             <a class="dropdown-item"
-                                                                href="/film/edit/<%= data[i].id_film %>">
+                                                                href="/kebun/{{$item->id_master_kebun}}/edit">
                                                                 <i data-feather="edit-3"></i>
                                                                 Rename
                                                             </a>
                                                         </li>
                                                         <li>
                                                             <a class="dropdown-item"
-                                                                href="/film/delete/<%= data[i].id_film %>">
+                                                                href="/kebun/{{$item->id_master_kebun}}/delete">
                                                                 <i data-feather="trash-2"></i>
                                                                 Remove
                                                             </a>

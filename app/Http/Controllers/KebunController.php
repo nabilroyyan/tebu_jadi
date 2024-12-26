@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kebun;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
-use Illuminate\Database\Eloquent\Model;
 
 class KebunController extends Controller
 {
@@ -14,34 +11,18 @@ class KebunController extends Controller
     {
         $data = [
             'kebuns' => Kebun::all()
-
         ];
         return view('viewAdmin.kebun.kebun', $data);
     }
 
-
     public function store(Request $request)
     {
-
-        // $request->validate([
-        //     'nama_kebun' => 'required|string|max:100',
-        //     'alamat' => 'required|string|max:255',
-        //     'luas' => 'required|string|max:100',
-        //     'kecamatan' => 'required|string|max:100',
-        //     'kabupaten' => 'required|string|max:100',
-        //     'nama_petani' => 'required|string|max:100',
-        //     'status' => 'required|string|max:50',
-        // ]);
-
-
         $randomNumber = rand(10000, 99999);
-
-        // Mengambil satu huruf acak
-        $huruf = range('A', 'Z'); // Array dari huruf A hingga Z
-        $hurufAcak = $huruf[array_rand($huruf)]; // Mengambil satu huruf acak dari array
+        $huruf = range('A', 'Z');
+        $hurufAcak = $huruf[array_rand($huruf)];
 
         $data = [
-            'nomer_kontrak' => $hurufAcak . '-' . $randomNumber, // Menggabungkan huruf acak dan angka
+            'nomer_kontrak' => $hurufAcak . '-' . $randomNumber,
             'nama_kebun' => $request->nama_kebun,
             'alamat' => $request->alamat,
             'luas' => $request->luas,
@@ -49,10 +30,49 @@ class KebunController extends Controller
             'kabupaten' => $request->kabupaten,
             'nama_petani' => $request->nama_petani,
             'status' => $request->status,
-
         ];
 
         Kebun::create($data);
         return redirect('/kebun')->with('success', 'Data kebun berhasil ditambahkan.');
     }
+
+    // Add the missing `edit` method
+    public function edit($id)
+    {
+        $kebun = Kebun::find($id);
+        if (!$kebun) {
+            return redirect('/kebun')->with('error', 'Data kebun tidak ditemukan.');
+        }
+        return view('viewAdmin.kebun.kebun_update', compact('kebun'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = [
+            "nama_kebun" => $request->nama_kebun,
+            "alamat" => $request->alamat,
+            "luas" => $request->luas,
+            "kecamatan" => $request->kecamatan,
+            "kabupaten" => $request->kabupaten,
+            "nama_petani" => $request->nama_petani,
+            "status" => $request->status,
+        ];
+
+        $kebun = Kebun::find($id);
+        if (!$kebun) {
+            return redirect('/kebun')->with('error', 'Data kebun tidak ditemukan.');
+        }
+
+        $kebun->update($data);
+        return redirect('/kebun')->with('success', 'Data kebun berhasil diperbarui.');
+    }
+
+    public function destroy($id)
+{
+    $kebun = Kebun::findOrFail($id);
+    $kebun->delete();
+
+    return redirect('/kebun')->with('success', 'Data kebun berhasil dihapus!');
+}
+
 }

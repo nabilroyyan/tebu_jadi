@@ -46,13 +46,13 @@
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a href="clients.html" class="menu-link">
+                        <a href="/timbangan-create" class="menu-link">
                             Create
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="task.html" class="menu-link">
-                            Detail
+                        <a href="/timbangan" class="menu-link">
+                            Tabel
                         </a>
                 </ul>
             </li>
@@ -63,13 +63,13 @@
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a href="clients.html" class="menu-link">
-                            Create
+                        <a href="http://localhost:8000/hutangs" class="menu-link">
+                            Index user: petani
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="task.html" class="menu-link">
-                            Detail
+                        <a href="http://localhost:8000/hutangs/1/edit" class="menu-link">
+                            Index user: admin
                         </a>
                 </ul>
             </li>
@@ -80,13 +80,13 @@
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a href="clients.html" class="menu-link">
-                            Create
+                        <a href="http://localhost:8000/transaksis" class="menu-link">
+                            Index user: petani
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="task.html" class="menu-link">
-                            Detail
+                        <a href="http://localhost:8000/transaksis/1/edit" class="menu-link">
+                            Index user: admin
                         </a>
                 </ul>
             </li>
