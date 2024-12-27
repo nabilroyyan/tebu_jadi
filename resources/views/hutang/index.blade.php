@@ -44,15 +44,18 @@
             let html = '';
 
             data.forEach((hutang, index) => {
-                html += `<tr>
-                    <td>${index + 1}</td>
-                    <td>${hutang.nokontrak}</td>
-                    <td>${hutang.pinjaman}</td>
-                    <td>${hutang.angsuran_sisa}</td>
-                    <td>${hutang.sisa}</td>
-                    <td>${hutang.status}</td>
-                </tr>`;
-            });
+                const sisaText = hutang.sisa <= 0 ? 'Lunas' : hutang.sisa;
+                const statusText = hutang.sisa <= 0 ? 'Lunas' : hutang.status;
+                
+            html += `<tr>
+                <td>${index + 1}</td>
+                <td>${hutang.nokontrak}</td>
+                <td>${hutang.pinjaman}</td>
+                <td>${hutang.angsuran_sisa}</td>
+                <td>${sisaText}</td>
+                <td>${statusText}</td>
+            </tr>`;
+        });
 
             hutangList.innerHTML = html;
         })
