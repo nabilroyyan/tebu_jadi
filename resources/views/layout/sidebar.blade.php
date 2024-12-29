@@ -1,3 +1,6 @@
+@php
+    $userAuth = auth()->user();
+@endphp
 <div class="sidebar-area" id="sidebar-area">
     <div class="logo position-relative">
         <a href="index.html" class="d-block text-decoration-none">
@@ -103,7 +106,7 @@
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a href="" class="menu-link">
+                        <a href="{{ route('role.getRole') }}" class="menu-link">
                             Role
                         </a>
                     </li>
@@ -123,8 +126,10 @@
                 </a>
             </div>
             <div class="flex-grow-1 ms-3 info">
-                <a href="profile.html" class="d-block name">Adison Jeck</a>
-                <a href="logout.html">Log Out</a>
+                <a href="profile.html" class="d-block name">{{ $userAuth->getRoleNames()->first() }}</a>
+                <form action="{{ route('logout') }}" method="post">
+                    <button tpye="submit" class="btn btn-danger fw-semibold text-white px-4">Log Out</button>
+                </form>
             </div>
         </div>
     </div>
