@@ -90,8 +90,29 @@
                         </a>
                 </ul>
             </li>
-
-
+            <li class="menu-item">
+                <a href="{{ route('user.index') }}" class="menu-link">
+                    <i data-feather="user" class="menu-icon tf-icons"></i>
+                    <span class="title">User</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <i data-feather="users" class="menu-icon tf-icons"></i>
+                    <span class="title">Role & Permission</span>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="" class="menu-link">
+                            Role
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="" class="menu-link">
+                            Permission
+                        </a>
+                </ul>
+            </li>
     </aside>
     <div class="bg-white z-1 admin">
         <div class="d-flex align-items-center admin-info border-top">

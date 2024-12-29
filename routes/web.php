@@ -5,6 +5,7 @@ use App\Http\Controllers\TbTransaksiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KebunController;
 use App\http\Controllers\TimbanganController;
+use App\Http\Controllers\UserController;
 
 Route::view('/', 'homeView/home');
 
@@ -28,6 +29,7 @@ Route::get('api/transaksis', [TbTransaksiController::class, 'apiIndex']);
 Route::put('api/transaksis/{id}', [TbTransaksiController::class, 'updateStatus']);
 Route::get('transaksis/{id}', [TbTransaksiController::class, 'show']);
 Route::get('/kebun/{id}/delete', [KebunController::class, 'destroy']);
+
 Auth::routes();
 
 
@@ -38,3 +40,13 @@ Route::get('/kebun-details/{id}', [TimbanganController::class, 'getKebunDetails'
 Route::get('/timbangan/{id}/edit', [TimbanganController::class, 'edit'])->name('timbangan.edit');
 Route::put('/timbangan/{id}', [TimbanganController::class, 'update'])->name('timbangan.update');
 Route::delete('/timbangan/{id}', [TimbanganController::class, 'destroy'])->name('timbangan.destroy');
+
+
+Route::controller(UserController::class)->prefix('/user')->group(function() {
+    Route::get('/','index')->name('user.index');
+    Route::get('/create','create')->name('user.create');
+    Route::post('/','store')->name('user.store');
+    Route::get('/edit/{id}','edit')->name('user.edit');
+    Route::put('/update/{id}','update')->name('user.update');
+    Route::delete('/delete/{id}','destroy')->name('user.delete');
+});
