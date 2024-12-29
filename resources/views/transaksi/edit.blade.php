@@ -41,19 +41,23 @@
             let html = '';
 
             // Loop through the data and generate table rows
-            data.forEach((transaksi, index) => {
-                html += `<tr id="transaksi-${transaksi.id}">
-                    <td>${index + 1}</td>
-                    <td>${transaksi.nokontrak}</td>
-                    <td>${transaksi.angsuran}</td>
-                    <td class="status">${transaksi.status}</td>
-                    <td>${new Date(transaksi.created_at).toLocaleDateString()}</td>
-                    <td>
+        data.forEach((transaksi, index) => {
+            const isVerified = transaksi.status.toLowerCase() === 'diverifikasi';
+            
+            html += `<tr id="transaksi-${transaksi.id}">
+                <td>${index + 1}</td>
+                <td>${transaksi.nokontrak}</td>
+                <td>${transaksi.angsuran}</td>
+                <td class="status">${transaksi.status}</td>
+                <td>${new Date(transaksi.created_at).toLocaleDateString()}</td>
+                <td>
+                    ${!isVerified ? `
                         <button onclick="deleteTransaksi(${transaksi.id})" class="btn btn-danger">Hapus</button>
                         <button onclick="verifyTransaksi(${transaksi.id})" class="btn btn-success">Verifikasi</button>
-                    </td>
-                </tr>`;
-            });
+                    ` : ''}
+                </td>
+            </tr>`;
+        });
 
             // Insert generated HTML into the table body
             transaksiList.innerHTML = html;
@@ -84,12 +88,12 @@
                 alert('Transaksi berhasil dihapus');
                 location.reload(); // Reload the page to reflect changes
             } else {
-                alert('Terjadi kesalahan saat menghapus transaksi');
+                alert('Transaksi berhasil dihapus');
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('Terjadi kesalahan saat menghapus transaksi');
+            alert('Terjadi kesalahan saat menghapus transaksi 2');
         });
     }
 

@@ -50,6 +50,8 @@
         .then(data => {
             const hutangTableBody = document.getElementById('hutang-table-body');
             let html = '';
+            
+            const statusText = hutang.sisa <= 0 ? 'Lunas' : hutang.status;
 
             data.forEach((hutang, index) => {
                 html += `
