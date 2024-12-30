@@ -1,3 +1,6 @@
+@php
+    $userAuth = auth()->user();
+@endphp
 <div class="container-fluid">
     <div class="main-content d-flex flex-column">
         <header class="header-area bg-white mb-4 rounded-bottom-10" id="header-area">
@@ -47,15 +50,19 @@
                                     <div class="d-xxl-flex align-items-center bg-transparent border-0 text-start p-0 cursor"
                                         data-bs-toggle="dropdown">
                                         <div class="flex-shrink-0">
-                                            <img class="rounded-circle wh-54" src="assets/images/admin.jpg"
-                                                alt="admin">
+                                            <img class="rounded-circle wh-54"
+                                                src="{{ asset('') }}admin/assets/images/admin.jpg" alt="admin">
                                         </div>
                                         <div class="flex-grow-1 ms-3">
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <div class="d-none d-xxl-block">
-                                                    <span class="degeneration">Admin</span>
+                                                    <span class="degeneration">
+                                                        {{ $userAuth->getRoleNames()->first() }}
+                                                    </span>
                                                     <div class="d-flex align-content-center">
-                                                        <h3>Adison Jeck</h3>
+                                                        <h3>
+                                                            {{ $userAuth->name }}
+                                                        </h3>
                                                         <div class="down">
                                                             <i data-feather="chevron-down"></i>
                                                         </div>
@@ -80,11 +87,13 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item d-flex align-items-center text-body"
-                                                href="logout.html">
-                                                <i data-feather="log-out"></i>
-                                                <span class="ms-2">Logout</span>
-                                            </a>
+                                            <form action="{{ route('logout') }}" method="post">
+                                                @csrf
+                                                <button type="submit" class="dropdown-item d-flex align-items-center text-body">
+                                                    <i data-feather="log-out"></i>
+                                                    <span class="ms-2">Logout</span>
+                                                </button>
+                                            </form>
                                         </li>
                                     </ul>
                                 </div>

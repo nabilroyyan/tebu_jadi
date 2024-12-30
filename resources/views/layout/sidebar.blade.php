@@ -1,3 +1,6 @@
+@php
+    $userAuth = auth()->user();
+@endphp
 <div class="sidebar-area" id="sidebar-area">
     <div class="logo position-relative">
         <a href="index.html" class="d-block text-decoration-none">
@@ -90,8 +93,29 @@
                         </a>
                 </ul>
             </li>
-
-
+            <li class="menu-item">
+                <a href="{{ route('user.index') }}" class="menu-link">
+                    <i data-feather="user" class="menu-icon tf-icons"></i>
+                    <span class="title">User</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <i data-feather="users" class="menu-icon tf-icons"></i>
+                    <span class="title">Role & Permission</span>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="{{ route('role.getRole') }}" class="menu-link">
+                            Role
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="" class="menu-link">
+                            Permission
+                        </a>
+                </ul>
+            </li>
     </aside>
     <div class="bg-white z-1 admin">
         <div class="d-flex align-items-center admin-info border-top">
@@ -102,8 +126,10 @@
                 </a>
             </div>
             <div class="flex-grow-1 ms-3 info">
-                <a href="profile.html" class="d-block name">Adison Jeck</a>
-                <a href="logout.html">Log Out</a>
+                <a href="profile.html" class="d-block name">{{ $userAuth->getRoleNames()->first() }}</a>
+                <form action="{{ route('logout') }}" method="post">
+                    <button tpye="submit" class="btn btn-danger fw-semibold text-white px-4">Log Out</button>
+                </form>
             </div>
         </div>
     </div>
