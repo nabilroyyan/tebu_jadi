@@ -35,7 +35,7 @@ class TbTransaksiController extends Controller
         $kebuns = DB::table('db_master_kebun') // Pastikan nama tabel sudah benar
             ->join('tb_hutangs', 'db_master_kebun.nomer_kontrak', '=', 'tb_hutangs.nokontrak') // Join sesuai kebutuhan
             ->select(
-                'db_master_kebun.id as kebun_id',
+                'db_master_kebun.id_master_kebun as kebun_id',
                 'db_master_kebun.nomer_kontrak',
                 'db_master_kebun.nama_petani',
                 'tb_hutangs.id as hutang_id',
