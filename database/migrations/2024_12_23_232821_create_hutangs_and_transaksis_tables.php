@@ -37,8 +37,8 @@ class CreateHutangsAndTransaksisTables extends Migration
             $table->timestamps();
         });
 
-        // Add unique constraint to nomer_kontrak in db_master_kebun
-        // Schema::table('db_master_kebun', function (Blueprint $table) {
+        // Add unique constraint to nomer_kontrak in 
+        // Schema::table('db_master_kebun', function (Bluepdb_master_kebunrint $table) {
         //     $table->unique('nomer_kontrak');
         // });
     }

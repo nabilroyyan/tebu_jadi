@@ -71,7 +71,7 @@ Welcome Slider
             <h2><span class="color">Pabrik Gula Candi Baru</span> </h2>
             <p>Pabrik Gula dengan upaya terus meningkatkan kualitas dan kuantitas terbaik di tengah Masyarakat modern.
             </p>
-            <a href="{{asset ('')}}landing/assets/" class="btn btn-transparent smooth-scroll">Login</a>
+            <a href="/login" class="btn btn-transparent smooth-scroll">Login</a>
         </div>
     </section>
 
