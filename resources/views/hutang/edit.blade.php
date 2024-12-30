@@ -51,9 +51,10 @@
             const hutangTableBody = document.getElementById('hutang-table-body');
             let html = '';
             
-            const statusText = hutang.sisa <= 0 ? 'Lunas' : hutang.status;
+        
 
             data.forEach((hutang, index) => {
+                const statusText = hutang.sisa <= 0 ? 'Lunas' : hutang.status;
                 html += `
                     <tr>
                         <td>${index + 1}</td>
