@@ -11,7 +11,7 @@ class Kebun extends Model
 
     protected $table = 'db_master_kebun';
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_master_kebun';
 
     protected $fillable = [
         'nomer_kontrak',
