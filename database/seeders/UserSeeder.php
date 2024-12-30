@@ -27,6 +27,7 @@ class UserSeeder extends Seeder
             'kebun.create',
             'kebun.edit',
             'kebun.delete',
+            'role.management'
         ];
 
          // Reset cached roles and permissions
@@ -56,6 +57,7 @@ class UserSeeder extends Seeder
             'kebun.create',
             'kebun.edit',
             'kebun.delete',
+            'role.management'
          ]);
 
          $user->givePermissionTo([

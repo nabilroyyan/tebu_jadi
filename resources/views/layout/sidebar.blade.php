@@ -93,12 +93,15 @@
                         </a>
                 </ul>
             </li>
-            <li class="menu-item">
-                <a href="{{ route('user.index') }}" class="menu-link">
-                    <i data-feather="user" class="menu-icon tf-icons"></i>
-                    <span class="title">User</span>
-                </a>
-            </li>
+            @if (Auth::user()->can('user.list'))
+                <li class="menu-item">
+                    <a href="{{ route('user.index') }}" class="menu-link">
+                        <i data-feather="user" class="menu-icon tf-icons"></i>
+                        <span class="title">User</span>
+                    </a>
+                </li>
+            @endif
+            @if (Auth::user()->can('role.management'))
             <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle active">
                     <i data-feather="users" class="menu-icon tf-icons"></i>
@@ -114,9 +117,10 @@
                         <a href="" class="menu-link">
                             Permission
                         </a>
-                </ul>
-            </li>
-    </aside>
+                    </ul>
+                </li>
+            </aside>
+            @endif
     <div class="bg-white z-1 admin">
         <div class="d-flex align-items-center admin-info border-top">
             <div class="flex-shrink-0">
