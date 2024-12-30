@@ -10,11 +10,13 @@
                 <div class="d-flex  align-items-center bg-body justify-content-between ">
                     <h5 class="ms-5">Table User</h5>
 
-                    <a href="{{ route('user.create') }}" class="">
-                        <button type="button" class="btn btn-primary text-white me-5">
-                            Tambah
-                        </button>
-                    </a>
+                    @if (Auth::user()->can('user.create'))
+                        <a href="{{ route('user.create') }}" class="">
+                            <button type="button" class="btn btn-primary text-white me-5">
+                                Tambah
+                            </button>
+                        </a>
+                    @endif
                 </div>
             </div>
             <div class="tab-content" id="myTabContent">
@@ -29,7 +31,9 @@
                                         <th scope="col">Nama</th>
                                         <th scope="col">Role</th>
                                         <th scope="col">Email</th>
-                                        <th scope="col">Action</th>
+                                        @if (Auth::user()->can('user.edit') || Auth::user()->can('user.delete'))
+                                            <th scope="col">Action</th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -47,39 +51,42 @@
                                             <td>
                                                 {{ $user->email }}
                                             </td>
-                                            <td>
-                                                <div class="dropdown action-opt">
-                                                    <button class="btn bg p-0" type="button" data-bs-toggle="dropdown"
-                                                        aria-expanded="false">
-                                                        <i data-feather="more-horizontal"></i>
-                                                    </button>
-                                                    <ul class="dropdown-menu dropdown-menu-end bg-white border box-shadow">
-                                                        @if (Auth::user()->can('user.edit'))
-                                                            <li>
-                                                                <a class="dropdown-item"
-                                                                    href="{{ route('user.edit', ['id' => $user->id]) }}">
-                                                                    <i data-feather="edit-3"></i>
-                                                                    Rename
-                                                                </a>
-                                                            </li>
-                                                        @endif
-                                                        @if (Auth::user()->can('user.delete'))
-                                                            <li>
-                                                                <form action="{{ route('user.delete', $user->id) }}"
-                                                                    method="post">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit" class="dropdown-item"
-                                                                        href="/kebun/{{ $user->id }}/delete">
-                                                                        <i data-feather="trash-2"></i>
-                                                                        Remove
-                                                                    </button>
-                                                                </form>
-                                                            </li>
-                                                        @endif
-                                                    </ul>
-                                                </div>
-                                            </td>
+                                            @if (Auth::user()->can('user.edit') || Auth::user()->can('user.delete'))
+                                                <td>
+                                                    <div class="dropdown action-opt">
+                                                        <button class="btn bg p-0" type="button" data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
+                                                            <i data-feather="more-horizontal"></i>
+                                                        </button>
+                                                        <ul
+                                                            class="dropdown-menu dropdown-menu-end bg-white border box-shadow">
+                                                            @if (Auth::user()->can('user.edit'))
+                                                                <li>
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('user.edit', ['id' => $user->id]) }}">
+                                                                        <i data-feather="edit-3"></i>
+                                                                        Rename
+                                                                    </a>
+                                                                </li>
+                                                            @endif
+                                                            @if (Auth::user()->can('user.delete'))
+                                                                <li>
+                                                                    <form action="{{ route('user.delete', $user->id) }}"
+                                                                        method="post">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit" class="dropdown-item"
+                                                                            href="/kebun/{{ $user->id }}/delete">
+                                                                            <i data-feather="trash-2"></i>
+                                                                            Remove
+                                                                        </button>
+                                                                    </form>
+                                                                </li>
+                                                            @endif
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>

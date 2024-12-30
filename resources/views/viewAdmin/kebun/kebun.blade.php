@@ -9,9 +9,12 @@
                 <div class="d-flex  align-items-center bg-body justify-content-between ">
                     <h5 class="ms-5">Table Kebun</h5>
 
-                    <button type="button" class="btn btn-primary text-white me-5" onclick="window.location.href='/kebun-create'">
-                        Tambah
-                    </button>
+                    @if (Auth::user()->can('kebun.create'))
+                        <button type="button" class="btn btn-primary text-white me-5"
+                            onclick="window.location.href='/kebun-create'">
+                            Tambah
+                        </button>
+                    @endif
                 </div>
             </div>
             <div class="tab-content" id="myTabContent">
@@ -87,21 +90,24 @@
                                                         <i data-feather="more-horizontal"></i>
                                                     </button>
                                                     <ul class="dropdown-menu dropdown-menu-end bg-white border box-shadow">
-
-                                                        <li>
-                                                            <a class="dropdown-item"
-                                                                href="/kebun/{{$item->id_master_kebun}}/edit">
-                                                                <i data-feather="edit-3"></i>
-                                                                Rename
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item"
-                                                                href="/kebun/{{$item->id_master_kebun}}/delete">
-                                                                <i data-feather="trash-2"></i>
-                                                                Remove
-                                                            </a>
-                                                        </li>
+                                                        @if (Auth::user()->can('kebun.edit'))
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                    href="/kebun/{{ $item->id_master_kebun }}/edit">
+                                                                    <i data-feather="edit-3"></i>
+                                                                    Rename
+                                                                </a>
+                                                            </li>
+                                                        @endif
+                                                        @if (Auth::user()->can('kebun.delete'))
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                    href="/kebun/{{ $item->id_master_kebun }}/delete">
+                                                                    <i data-feather="trash-2"></i>
+                                                                    Remove
+                                                                </a>
+                                                            </li>
+                                                        @endif
                                                     </ul>
                                                 </div>
                                             </td>

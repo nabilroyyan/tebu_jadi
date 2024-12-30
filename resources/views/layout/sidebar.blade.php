@@ -25,23 +25,30 @@
             <li class="menu-title small text-uppercase">
                 <span class="menu-title-text">TABEL</span>
             </li>
-            <li class="menu-item">
-                <a href="javascript:void(0);" class="menu-link menu-toggle active">
-                    <i data-feather="life-buoy" class="menu-icon tf-icons"></i>
-                    <span class="title">Kebun</span>
-                </a>
-                <ul class="menu-sub">
-                    <li class="menu-item">
-                        <a href="/kebun-create" class="menu-link">
-                            Create
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="/kebun" class="menu-link">
-                            Tabel
-                        </a>
-                </ul>
-            </li>
+            @if (Auth::user()->can('kebun.list'))
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                        <i data-feather="life-buoy" class="menu-icon tf-icons"></i>
+                        <span class="title">Kebun</span>
+                    </a>
+                    <ul class="menu-sub">
+                        @if (Auth::user()->can('kebun.create'))
+                            <li class="menu-item">
+                                <a href="/kebun-create" class="menu-link">
+                                    Create
+                                </a>
+                            </li>
+                        @endif
+                        @if (Auth::user()->can('kebun.list'))
+                            <li class="menu-item">
+                                <a href="/kebun" class="menu-link">
+                                    Tabel
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+            @endif
             <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle active">
                     <i data-feather="book" class="menu-icon tf-icons"></i>
@@ -102,25 +109,25 @@
                 </li>
             @endif
             @if (Auth::user()->can('role.management'))
-            <li class="menu-item">
-                <a href="javascript:void(0);" class="menu-link menu-toggle active">
-                    <i data-feather="users" class="menu-icon tf-icons"></i>
-                    <span class="title">Role & Permission</span>
-                </a>
-                <ul class="menu-sub">
-                    <li class="menu-item">
-                        <a href="{{ route('role.getRole') }}" class="menu-link">
-                            Role
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="" class="menu-link">
-                            Permission
-                        </a>
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                        <i data-feather="users" class="menu-icon tf-icons"></i>
+                        <span class="title">Role & Permission</span>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a href="{{ route('role.getRole') }}" class="menu-link">
+                                Role
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="" class="menu-link">
+                                Permission
+                            </a>
                     </ul>
                 </li>
-            </aside>
-            @endif
+    </aside>
+    @endif
     <div class="bg-white z-1 admin">
         <div class="d-flex align-items-center admin-info border-top">
             <div class="flex-shrink-0">
