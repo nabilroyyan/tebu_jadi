@@ -199,7 +199,7 @@
             </div>
             
         <button type="button" class="btn btn-secondary fw-semibold text-white py-3 px-4 mt-2 w-30"
-        onclick="window.location.href='/timbangan'">Back</button>
+        onclick="window.location.href='/timbangan'">Back sksjsjsjshdjshdjshdjshjd</button>
     <button type="submit" class="btn btn-primary fw-semibold text-white py-3 px-4 mt-2 w-30">Save</button>
         </div>
 
