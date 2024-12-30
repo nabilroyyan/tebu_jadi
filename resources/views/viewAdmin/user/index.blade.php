@@ -54,25 +54,29 @@
                                                         <i data-feather="more-horizontal"></i>
                                                     </button>
                                                     <ul class="dropdown-menu dropdown-menu-end bg-white border box-shadow">
-
-                                                        <li>
-                                                            <a class="dropdown-item"
-                                                                href="{{ route('user.edit', ['id' => $user->id]) }}">
-                                                                <i data-feather="edit-3"></i>
-                                                                Rename
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <form action="{{ route('user.delete', $user->id) }}" method="post">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="dropdown-item"
-                                                                    href="/kebun/{{ $user->id }}/delete">
-                                                                    <i data-feather="trash-2"></i>
-                                                                    Remove
-                                                                </button>
-                                                            </form>
-                                                        </li>
+                                                        @if (Auth::user()->can('user.edit'))
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('user.edit', ['id' => $user->id]) }}">
+                                                                    <i data-feather="edit-3"></i>
+                                                                    Rename
+                                                                </a>
+                                                            </li>
+                                                        @endif
+                                                        @if (Auth::user()->can('user.delete'))
+                                                            <li>
+                                                                <form action="{{ route('user.delete', $user->id) }}"
+                                                                    method="post">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" class="dropdown-item"
+                                                                        href="/kebun/{{ $user->id }}/delete">
+                                                                        <i data-feather="trash-2"></i>
+                                                                        Remove
+                                                                    </button>
+                                                                </form>
+                                                            </li>
+                                                        @endif
                                                     </ul>
                                                 </div>
                                             </td>
