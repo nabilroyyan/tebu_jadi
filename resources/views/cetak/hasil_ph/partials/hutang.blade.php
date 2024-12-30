@@ -17,7 +17,7 @@
                 console.log('Respons JSON:', response);
 
                 var body4s = response.body4s || [];
-                var dataMasuk = response.dataMasuk || {};
+                var dataMasuk = response.timbangan || {};
                 var konstata = response.konstata || {};
                 var halamanRelated = response.halamanRelated || {};
 
@@ -42,8 +42,8 @@
                     </tr>
                     <tr>
                         <td>2. ${body4s.find(item => item.id === 2)?.menu || ''}</td>
-                        <td>: ${formatCurrency(dataMasuk.kuTebu)} Ku * ${formatCurrency(konstata.angkutTruk)} </td>
-                        <td>= ${formatCurrency(safeMultiply(dataMasuk.kuTebu, konstata.angkutTruk))}</td>
+                        <td>: ${formatCurrency(dataMasuk.neto)} Ku * ${formatCurrency(konstata.angkutTruk)} </td>
+                        <td>= ${formatCurrency(safeMultiply(dataMasuk.neto, konstata.angkutTruk))}</td>
                     </tr>
                     <tr>
                         <td>3. ${body4s.find(item => item.id === 3)?.menu || ''}</td>
@@ -52,33 +52,33 @@
                     </tr>
                     <tr>
                         <td>4. ${body4s.find(item => item.id === 4)?.menu || ''}</td>
-                        <td>: ${formatCurrency(dataMasuk.tetes)} Kg * ${formatCurrency(konstata.biayaEksplo)} </td>
-                        <td>= ${formatCurrency(safeMultiply(dataMasuk.tetes, konstata.biayaEksplo))}</td>
+                        <td>: ${formatCurrency(dataMasuk.bruto)} Kg * ${formatCurrency(konstata.biayaEksplo)} </td>
+                        <td>= ${formatCurrency(safeMultiply(dataMasuk.bruto, konstata.biayaEksplo))}</td>
                     </tr>
                     <tr>
                         <td>5. ${body4s.find(item => item.id === 5)?.menu || ''}</td>
-                        <td>: ${formatCurrency(dataMasuk.luas * 0.1)} Ha * ${formatCurrency(konstata.biayaRDKK)} </td>
-                        <td>= ${formatCurrency(safeMultiply(dataMasuk.luas * 0.1, konstata.biayaRDKK))}</td>
+                        <td>: ${formatCurrency(dataMasuk.bruto * 0.1)} Ha * ${formatCurrency(konstata.biayaRDKK)} </td>
+                        <td>= ${formatCurrency(safeMultiply(dataMasuk.bruto * 0.1, konstata.biayaRDKK))}</td>
                     </tr>
                     <tr>
                         <td>6. ${body4s.find(item => item.id === 6)?.menu || ''}</td>
-                        <td>: ${formatCurrency(dataMasuk.kuTebu)} Ku * ${formatCurrency(konstata.biayaLinting)} </td>
-                        <td>= ${formatCurrency(safeMultiply(dataMasuk.kuTebu, konstata.biayaLinting))}</td>
+                        <td>: ${formatCurrency(dataMasuk.neto)} Ku * ${formatCurrency(konstata.biayaLinting)} </td>
+                        <td>= ${formatCurrency(safeMultiply(dataMasuk.neto, konstata.biayaLinting))}</td>
                     </tr>
                     <tr>
                         <td>7. ${body4s.find(item => item.id === 7)?.menu || ''}</td>
-                        <td>: ${formatCurrency(dataMasuk.gulaPetani * 0.9)} Ku * ${formatCurrency(konstata.biaaZAK)} </td>
-                        <td>= ${formatCurrency(safeMultiply(dataMasuk.gulaPetani * 0.9, konstata.biaaZAK))}</td>
+                        <td>: ${formatCurrency(dataMasuk.tara * 0.9)} Ku * ${formatCurrency(konstata.biaaZAK)} </td>
+                        <td>= ${formatCurrency(safeMultiply(dataMasuk.tara * 0.9, konstata.biaaZAK))}</td>
                     </tr>
                     <tr>
                         <td>8. ${body4s.find(item => item.id === 8)?.menu || ''}</td>
-                        <td>: ${formatCurrency(dataMasuk.gulaPetani * 0.1)} Ku * ${formatCurrency(konstata.biaaZAK)} </td>
-                        <td>= ${formatCurrency(safeMultiply(dataMasuk.gulaPetani * 0.1, konstata.biaaZAK))}</td>
+                        <td>: ${formatCurrency(dataMasuk.tara * 0.1)} Ku * ${formatCurrency(konstata.biaaZAK)} </td>
+                        <td>= ${formatCurrency(safeMultiply(dataMasuk.tara * 0.1, konstata.biaaZAK))}</td>
                     </tr>
                     <tr>
                         <td>9. ${body4s.find(item => item.id === 9)?.menu || ''}</td>
-                        <td>: ${formatCurrency(dataMasuk.kuTebu)} Ku * ${formatCurrency(konstata.iuranAPTRI)} </td>
-                        <td>= ${formatCurrency(safeMultiply(dataMasuk.kuTebu, konstata.iuranAPTRI))}</td>
+                        <td>: ${formatCurrency(dataMasuk.neto)} Ku * ${formatCurrency(konstata.iuranAPTRI)} </td>
+                        <td>= ${formatCurrency(safeMultiply(dataMasuk.neto, konstata.iuranAPTRI))}</td>
                     </tr>
                     <tr>
                         <td>10. ${body4s.find(item => item.id === 10)?.menu || ''}</td>
@@ -107,31 +107,31 @@
                     </tr>
                     <tr>
                         <td>15. ${body4s.find(item => item.id === 15)?.menu || ''}</td>
-                        <td>: ${formatCurrency(dataMasuk.kuTebu)} Ku * ${formatCurrency(konstata.biayaCrane)} </td>
-                        <td>= ${formatCurrency(safeMultiply(dataMasuk.kuTebu, konstata.biayaCrane))}</td>
+                        <td>: ${formatCurrency(dataMasuk.neto)} Ku * ${formatCurrency(konstata.biayaCrane)} </td>
+                        <td>= ${formatCurrency(safeMultiply(dataMasuk.neto, konstata.biayaCrane))}</td>
                     </tr>
                 `;
 
                 $('#table-hutang').html(rows);
 
                 totalHutang = [
-                    safeMultiply(dataMasuk.kuTebu, konstata.angkutTruk),
-                    safeMultiply(dataMasuk.tetes, konstata.biayaEksplo),
-                    safeMultiply(dataMasuk.luas * 0.1, konstata.biayaRDKK),
-                    safeMultiply(dataMasuk.kuTebu, konstata.biayaLinting),
-                    safeMultiply(dataMasuk.gulaPetani * 0.9, konstata.biaaZAK),
-                    safeMultiply(dataMasuk.gulaPetani * 0.1, konstata.biaaZAK),
-                    safeMultiply(dataMasuk.kuTebu, konstata.iuranAPTRI),
-                    safeMultiply(dataMasuk.kuTebu, konstata.biayaCrane)
+                    safeMultiply(dataMasuk.neto, konstata.angkutTruk),
+                    safeMultiply(dataMasuk.bruto, konstata.biayaEksplo),
+                    safeMultiply(dataMasuk.bruto * 0.1, konstata.biayaRDKK),
+                    safeMultiply(dataMasuk.neto, konstata.biayaLinting),
+                    safeMultiply(dataMasuk.tara * 0.9, konstata.biaaZAK),
+                    safeMultiply(dataMasuk.tara * 0.1, konstata.biaaZAK),
+                    safeMultiply(dataMasuk.neto, konstata.iuranAPTRI),
+                    safeMultiply(dataMasuk.neto, konstata.biayaCrane)
                 ].reduce((a, b) => a + b, 0);
-
+//ganti dgn data hutang
                 $('#jumlah-hutang').text(`Jumlah Hutang Petani Pada PG = ${formatCurrency(totalHutang)}`);
 
-                var nilaiTetes = parseFloat(konstata.nilaiTetes) || 0;
+                var nilaibruto = parseFloat(konstata.nilaibruto) || 0;
                 var nilaiGula = parseFloat(konstata.nilaiGula) || 0;
                 var sisaPinjaman = parseFloat(response.sisaPinjaman) || 0; 
 
-                var totalPendapatan = (dataMasuk.tetes * nilaiTetes) + (dataMasuk.gulaPetani * 0.9 * nilaiGula) - (totalHutang) - sisaPinjaman;
+                var totalPendapatan = (dataMasuk.bruto * nilaibruto) + (dataMasuk.tara * 0.9 * nilaiGula) - (totalHutang) - sisaPinjaman;
                 $('#jumlah-pendapatan').text(`Jumlah Pendapatan Petani (A-B) = ${formatCurrency(totalPendapatan)}`);
                 $('#sisa-pinjaman').text(`Sisa Pinjaman Di PG : ${formatCurrency(sisaPinjaman)}`);
             },

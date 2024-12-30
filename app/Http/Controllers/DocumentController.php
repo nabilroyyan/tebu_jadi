@@ -42,7 +42,7 @@ class DocumentController extends Controller
             \Log::info('ID setelah dekripsi:', ['id' => $id]);
     
             // Kembalikan view dengan ID yang sudah didekripsi
-            return view('hasil_ph.report', compact('id'));
+            return view('cetak.hasil_ph.report', compact('id'));
         } catch (\Exception $e) {
             // Log pesan error jika terjadi kesalahan
             \Log::error('Gagal mendekripsi ID: ' . $e->getMessage());
@@ -58,10 +58,25 @@ class DocumentController extends Controller
 
     public function getReportData($id)
     {
-        $timbangan = tb_timbangan::find($id);
-        $kebun = kebun::find($dataMasuk->idPetani);
-        $dataHutang = TbHutang::find($dataMasuk->idHutang);
-        $konstata = Konstanta::find(1);
+        // Ambil data timbangan
+    $timbangan = tb_timbangan::find($id);
+    if (!$timbangan) {
+        return response()->json(['error' => 'Timbangan not found'], 404);
+    }
+
+    // Ambil data kebun berdasarkan id_master_kebun dari timbangan
+    $kebun = kebun::find($timbangan->master_kebun_id);
+    if (!$kebun) {
+        return response()->json(['error' => 'Kebun not found'], 404);
+    }
+
+    // Ambil data hutang berdasarkan nokontrak dari kebun
+    $dataHutang = TbHutang::where('nokontrak', $kebun->nomer_kontrak)->get();
+    if ($dataHutang->isEmpty()) {
+        return response()->json(['error' => 'Data Hutang not found'], 404);
+    }
+
+    $konstata = Konstanta::find(1);
     
         $body1s = Bodys1::all();
         $body2s = Bodys2::all();
@@ -71,8 +86,8 @@ class DocumentController extends Controller
         $halamanRelated = HalamanRelated::find(1);
     
         return response()->json([
-            'petani' => $petani,
-            'dataMasuk' => $dataMasuk,
+            'kebun' => $kebun,
+            'timbangan' => $timbangan,
             'dataHutang' => $dataHutang,
             'konstata' => $konstata,
             'body1s' => $body1s,
@@ -86,12 +101,13 @@ class DocumentController extends Controller
 
     public function getDataMasuk()
     {
-        $dataMasuk = DataMasuk::all()->map(function($item) {
-            $item->encrypted_id = Crypt::encryptString($item->id);
+        $dataMasuk = tb_timbangan::all()->map(function($item) {
+            // Enkripsi ID menggunakan Crypt
+            $item->encrypted_id = Crypt::encryptString($item->id_timbangan);
             return $item;
         });
     
         return response()->json(['dataMasuk' => $dataMasuk]);
     }
-    
+        
 }

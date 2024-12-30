@@ -31,14 +31,14 @@
                 console.log('Respons JSON:', response);
 
                 var body4s = response.body4s || [];
-                var dataMasuk = response.dataMasuk || {};
+                var dataMasuk = response.timbangan || {};
                 var konstata = response.konstata || {};
                 var halamanRelated = response.halamanRelated || {};
                 var anggotas = response.anggotas || [];
 
                 $('#header3').text(halamanRelated.header3 || '');
 
-                var createdAt = new Date(dataMasuk.created_at);
+                var createdAt = new Date(dataMasuk.tgl_timb_msk);
             var formattedDate = createdAt.toLocaleDateString('id-ID', {
                 day: 'numeric',
                 month: 'short',

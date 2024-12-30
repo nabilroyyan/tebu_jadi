@@ -55,6 +55,16 @@ class TimbanganController extends Controller
     return response()->json($kebun);
 }
 
+// API untuk mendapatkan semua data timbangan tanpa relasi
+public function apiGetAllTimbangan()
+{
+    $timbangans = Tb_Timbangan::all(); // Mengambil semua data dari tabel Tb_Timbangan
+    return response()->json([
+        'success' => true,
+        'message' => 'Data timbangan berhasil diambil.',
+        'data' => $timbangans
+    ], 200);
+}
 
     // Tampilkan form edit data
     public function edit($id)

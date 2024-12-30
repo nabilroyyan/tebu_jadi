@@ -7,17 +7,17 @@
 </head>
 <body>
     <!-- Bagian Head -->
-    @include('hasil_ph.partials.head')
+    @include('cetak.hasil_ph.partials.head')
 
     <!-- Konten Utama -->
     <div id="content" class="closingorig">
-        @include('hasil_ph.partials.profile')
-        @include('hasil_ph.partials.data')
+        @include('cetak.hasil_ph.partials.profile')
+        @include('cetak.hasil_ph.partials.data')
 
         <div class="footer">
-            @include('hasil_ph.partials.pendapatan')
-            @include('hasil_ph.partials.hutang')
-            @include('hasil_ph.partials.footer')
+            @include('cetak.hasil_ph.partials.pendapatan')
+            @include('cetak.hasil_ph.partials.hutang')
+            @include('cetak.hasil_ph.partials.footer')
         </div>
     </div>
 

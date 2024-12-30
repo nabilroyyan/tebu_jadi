@@ -10,7 +10,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Ku Tebu</th>
+                    <th>Netto</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -33,136 +33,151 @@
 </div>
 @endsection
 
-@push('scripts')
-<!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
    $(document).ready(function() {
+        console.log('Document Ready: JavaScript file loaded and executing.');
+
+        $(document).ready(function() {
+    console.log('Document Ready: JavaScript file loaded and executing.');
+
+    // AJAX request to get data from the API
     $.ajax({
-        url: 'http://localhost:8000/api/data-masuk',
+        url: 'http://localhost:8000/api/data-masuk', // URL of your API
         method: 'GET',
+        beforeSend: function() {
+            console.log('AJAX request is about to be sent.');
+        },
         success: function(response) {
-            var rows = '';
-            response.dataMasuk.forEach(function(data) {
-                rows += `
-                    <tr>
-                        <td>${data.id}</td>
-                        <td>${data.kuTebu}</td>
-                        <td>
-                            <a href="javascript:void(0);" 
-                               class="view-document" 
-                               data-encrypted-id="${data.encrypted_id}">show</a>
-                        </td>
-                    </tr>
-                `;
-            });
-            $('#data-masuk-table tbody').html(rows);
+            console.log('AJAX Success:', response);
+            if (response && response.dataMasuk) {
+                var rows = '';
+                response.dataMasuk.forEach(function(data) {
+                    rows += `
+                        <tr>
+                            <td>${data.id_timbangan}</td> <!-- Menampilkan id_timbangan -->
+                            <td>${data.neto}</td> <!-- Menampilkan netto -->
+                            <td>
+                                <a href="javascript:void(0);" 
+                                   class="view-document" 
+                                   data-encrypted-id="${data.encrypted_id}">show</a>
+                            </td>
+                        </tr>
+                    `;
+                });
+                $('#data-masuk-table tbody').html(rows);
 
-            $('.view-document').on('click', function() {
-                var encryptedId = $(this).data('encrypted-id');
-                var form = document.createElement('form');
-                form.method = 'GET';
-                form.action = '/data-report';
+                $('.view-document').on('click', function() {
+                    var encryptedId = $(this).data('encrypted-id');
+                    var form = document.createElement('form');
+                    form.method = 'GET';
+                    form.action = '/data-report'; // This is the correct route
 
-                var input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = 'Id';
-                input.value = encryptedId;
-                
-                form.appendChild(input);
-                document.body.appendChild(form);
-                form.submit();
-            });
+                    var input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = 'Id';
+                    input.value = encryptedId; // Use encrypted ID here
+
+                    form.appendChild(input);
+                    document.body.appendChild(form);
+                    form.submit();
+                });
+            } else {
+                console.error('Data not found in response.');
+            }
         },
         error: function(xhr, status, error) {
-            console.error('Terjadi kesalahan:', error);
+            console.error('AJAX Error:', status, error);
+        },
+        complete: function() {
+            console.log('AJAX request completed.');
         }
     });
-
-    // API endpoint
-    const apiEndpoint = 'http://localhost:5000/api/chatbot';
-    
-    // Select elements
-    const messageContainer = document.getElementById('message-container');
-    
-    // Function to create a new text area in a separate div
-    function createTextArea(text, isResponse = false) {
-        const messageBox = document.createElement('div');
-        messageBox.classList.add('message-box');
-    
-        const newTextArea = document.createElement('textarea');
-        newTextArea.classList.add('frm-textarea');
-        newTextArea.value = text;
-        newTextArea.readOnly = true;  // Disable text area editing after submission
-    
-        // If it's a response, align it to the right
-        if (isResponse) {
-            newTextArea.classList.add('response-area');
-        }
-    
-        messageBox.appendChild(newTextArea);
-        messageContainer.appendChild(messageBox);
-    }
-    
-    // Function to create an audio element and play the response
-    function playAudio(audioUrl) {
-        const audioElement = document.createElement('audio');
-        audioElement.src = audioUrl;
-        audioElement.controls = true;
-        audioElement.autoplay = true; // Play the audio automatically when added to the DOM
-    
-        // Append the audio element to the container
-        const audioContainer = document.createElement('div');
-        audioContainer.classList.add('audio-container');
-        audioContainer.appendChild(audioElement);
-        messageContainer.appendChild(audioContainer);
-    }
-    
-    // Function to handle the chatbot API request
-    function sendToChatbot(event) {
-        event.preventDefault(); // Prevent default form submission behavior
-    
-        // Get the clicked button and its associated textarea
-        const buttonClicked = event.currentTarget;
-        const textarea = buttonClicked.previousElementSibling; // Get the textarea before the button
-        const userMessage = textarea.value.trim();
-    
-        // Check if the textarea is empty
-        if (!userMessage) return;
-    
-        // Display the user's message in a new text area aligned to the left (above input)
-        createTextArea(userMessage);
-    
-        // Send user input to the chatbot API
-        fetch(apiEndpoint, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ message: userMessage })
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log("Chatbot response:", data);  // Log the response
-
-            // Display the chatbot response in a new text area aligned to the right
-            createTextArea(data.response, true);
-    
-            // Play the audio response if an audio URL is provided
-            if (data.audio_url) {
-                const audioUrl = `http://localhost:5000/${data.audio_url}`;
-                playAudio(audioUrl);
-            }
-    
-            // Create a new empty textarea and button for the next message
-            const newMessageBox = document.createElement('div');
-            newMessageBox.classList.add('message-box');
-        })
-        .catch(error => console.error('Error:', error));
-    }
-    
-    // Initial event listener for the "Kirim" button
-    document.getElementById('send-btn').addEventListener('click', sendToChatbot);
 });
+
+        // API endpoint untuk chatbot
+        const apiEndpoint = 'http://localhost:5000/api/chatbot';
+        
+        // Select elements untuk chatbot
+        const messageContainer = document.getElementById('message-container');
+        
+        // Fungsi untuk membuat text area baru
+        function createTextArea(text, isResponse = false) {
+            const messageBox = document.createElement('div');
+            messageBox.classList.add('message-box');
+        
+            const newTextArea = document.createElement('textarea');
+            newTextArea.classList.add('frm-textarea');
+            newTextArea.value = text;
+            newTextArea.readOnly = true;  // Disable text area editing after submission
+        
+            // Jika ini adalah response, posisikan di sebelah kanan
+            if (isResponse) {
+                newTextArea.classList.add('response-area');
+            }
+        
+            messageBox.appendChild(newTextArea);
+            messageContainer.appendChild(messageBox);
+        }
+        
+        // Fungsi untuk memutar audio
+        function playAudio(audioUrl) {
+            const audioElement = document.createElement('audio');
+            audioElement.src = audioUrl;
+            audioElement.controls = true;
+            audioElement.autoplay = true; // Play audio automatically when added to the DOM
+        
+            // Tambahkan elemen audio ke dalam container
+            const audioContainer = document.createElement('div');
+            audioContainer.classList.add('audio-container');
+            audioContainer.appendChild(audioElement);
+            messageContainer.appendChild(audioContainer);
+        }
+        
+        // Fungsi untuk mengirim pesan ke API chatbot
+        function sendToChatbot(event) {
+            event.preventDefault(); // Mencegah pengiriman form default
+        
+            // Ambil textarea dan tombol kirim
+            const buttonClicked = event.currentTarget;
+            const textarea = buttonClicked.previousElementSibling; // Ambil textarea sebelum tombol
+            const userMessage = textarea.value.trim();
+        
+            // Cek jika textarea kosong
+            if (!userMessage) return;
+        
+            // Tampilkan pesan user
+            createTextArea(userMessage);
+        
+            // Kirim pesan ke API chatbot
+            fetch(apiEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: userMessage })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Chatbot response:", data);  // Log response chatbot
+
+                // Tampilkan response chatbot
+                createTextArea(data.response, true);
+        
+                // Putar audio jika ada
+                if (data.audio_url) {
+                    const audioUrl = `http://localhost:5000/${data.audio_url}`;
+                    playAudio(audioUrl);
+                }
+        
+                // Buat textarea kosong untuk pesan selanjutnya
+                const newMessageBox = document.createElement('div');
+                newMessageBox.classList.add('message-box');
+            })
+            .catch(error => console.error('Error:', error));
+        }
+        
+        // Event listener untuk tombol "Kirim"
+        document.getElementById('send-btn').addEventListener('click', sendToChatbot);
+    });
 </script>
-@endpush

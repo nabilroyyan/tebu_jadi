@@ -54,7 +54,7 @@ Route::get('/kebun-details/{id}', [TimbanganController::class, 'getKebunDetails'
 Route::get('/timbangan/{id}/edit', [TimbanganController::class, 'edit'])->name('timbangan.edit');
 Route::post('/timbangan/{id}/update', [TimbanganController::class, 'update'])->name('timbangan.update');
 Route::get('/timbangan/{id}/delete', [TimbanganController::class, 'destroy'])->name('timbangan.destroy');
-
+Route::get('/api/timbangan', [TimbanganController::class, 'apiGetAllTimbangan']);
 
 Route::controller(UserController::class)->prefix('/user')->group(function() {
     Route::get('/','index')->name('user.index');
