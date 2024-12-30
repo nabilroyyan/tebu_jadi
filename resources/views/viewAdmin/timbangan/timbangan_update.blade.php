@@ -211,6 +211,7 @@
                 const now = new Date();
                 const formattedDate = now.toISOString().split('T')[0]; // Format menjadi YYYY-MM-DD
                 tanggalInput.value = formattedDate;
+                //astagf
             }
         });
     </script>
