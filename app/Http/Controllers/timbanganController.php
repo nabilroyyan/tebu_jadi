@@ -73,7 +73,7 @@ class TimbanganController extends Controller
     $validated = $request->validate([
         'no_spa' => 'nullable|string|max:255',
         'tanggal' => 'nullable|date',
-        'nopol' => 'nullable|integer',
+        'nopol' => 'nullable|string',
         'sopir' => 'nullable|string|max:255',
         'status_timbang' => 'nullable|in:proses,selesai_ditimbang',
         'bruto' => 'nullable|numeric',
