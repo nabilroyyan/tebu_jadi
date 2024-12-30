@@ -100,6 +100,19 @@
                         </a>
                 </ul>
             </li>
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <i data-feather="shopping-cart" class="menu-icon tf-icons"></i>
+                    <span class="title">Cetak</span>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="http://localhost:8000/transaksis" class="menu-link">
+                            daftar document timbangan
+                        </a>
+                    </li>
+                </ul>
+            </li>
             @if (Auth::user()->can('user.list'))
                 <li class="menu-item">
                     <a href="{{ route('user.index') }}" class="menu-link">
