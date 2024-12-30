@@ -197,11 +197,12 @@
                     </div>
                 </div>
             </div>
+            
+        <button type="button" class="btn btn-secondary fw-semibold text-white py-3 px-4 mt-2 w-30"
+        onclick="window.location.href='/timbangan'">Back</button>
+    <button type="submit" class="btn btn-primary fw-semibold text-white py-3 px-4 mt-2 w-30">Save</button>
         </div>
 
-        <button type="button" class="btn btn-secondary fw-semibold text-white py-3 px-4 mt-2 w-30"
-            onclick="window.location.href='/timbangan'">Back</button>
-        <button type="submit" class="btn btn-primary fw-semibold text-white py-3 px-4 mt-2 w-30">Save</button>
     </form>
 
     <script>
@@ -211,7 +212,7 @@
                 const now = new Date();
                 const formattedDate = now.toISOString().split('T')[0]; // Format menjadi YYYY-MM-DD
                 tanggalInput.value = formattedDate;
-                //astagf
+                
             }
         });
     </script>

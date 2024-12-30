@@ -47,7 +47,7 @@ Route::post('/timbangan-store', [TimbanganController::class, 'store'])->name('ti
 Route::get('/kebun-details/{id}', [TimbanganController::class, 'getKebunDetails']);
 Route::get('/timbangan/{id}/edit', [TimbanganController::class, 'edit'])->name('timbangan.edit');
 Route::post('/timbangan/{id}/update', [TimbanganController::class, 'update'])->name('timbangan.update');
-Route::delete('/timbangan/{id}', [TimbanganController::class, 'destroy'])->name('timbangan.destroy');
+Route::get('/timbangan/{id}/delete', [TimbanganController::class, 'destroy'])->name('timbangan.destroy');
 
 
 Route::controller(UserController::class)->prefix('/user')->group(function() {
