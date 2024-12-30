@@ -72,7 +72,7 @@
                                         </div>
                                     </div>
                                     <ul class="dropdown-menu border-0 bg-white w-100 admin-link">
-                                        <li>
+                                        {{-- <li>
                                             <a class="dropdown-item d-flex align-items-center text-body"
                                                 href="profile.html">
                                                 <i data-feather="user"></i>
@@ -85,7 +85,7 @@
                                                 <i data-feather="settings"></i>
                                                 <span class="ms-2">Setting</span>
                                             </a>
-                                        </li>
+                                        </li> --}}
                                         <li>
                                             <form action="{{ route('logout') }}" method="post">
                                                 @csrf

@@ -140,8 +140,8 @@
             <div class="form-group mb-4">
                     <label class="label">Tanggal</label>
                     <div class="form-group position-relative">
-                        <input type="date" name="tanggal" class="form-control text-dark ps-5 h-58"
-                            value="{{ $timbangan->tanggal ?? now()->format('Y-m-d') }}">
+                        <input type="date" name="tgl_masuk_pos" class="form-control text-dark ps-5 h-58"
+                            value="{{ $timbangan->tgl_masuk_pos ?? now()->format('Y-m-d') }}">
                         <i
                             class="ri-calendar-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
                     </div>
