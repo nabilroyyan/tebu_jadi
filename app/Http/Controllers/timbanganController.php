@@ -68,31 +68,37 @@ class TimbanganController extends Controller
         return view('viewAdmin.timbangan.timbangan_update', compact('timbangan', 'kebuns'));
     }
 
-    // Update data di database
     public function update(Request $request, $id)
-    {
-        $validated = $request->validate([
-            'no_spa' => 'required|string|max:255',
-            'tanggal' => 'required|date',
-            'nomer_kontrak' => 'required|exists:db_master_kebun,nomer_kontrak',
-            'nopol' => 'required|integer',
-            'sopir' => 'required|string|max:255',
-            'status_timbang' => 'required|in:proses,selesai_ditimbang',
-            'bruto' => 'required|numeric',
-            'tara' => 'required|numeric',
-            'neto' => 'required|numeric',
-            'tgl_masuk_pos' => 'nullable|date',
-            'tgl_timb_masuk' => 'nullable|date',
-            'tgl_timb_keluar' => 'nullable|date',
-            'jenis_tebu' => 'required|string|max:255',
-            'brix' => 'required|string|max:255',
-        ]);
+{
+    $validated = $request->validate([
+        'no_spa' => 'nullable|string|max:255',
+        'tanggal' => 'nullable|date',
+        'nopol' => 'nullable|integer',
+        'sopir' => 'nullable|string|max:255',
+        'status_timbang' => 'nullable|in:proses,selesai_ditimbang',
+        'bruto' => 'nullable|numeric',
+        'tara' => 'nullable|numeric',
+        'neto' => 'nullable|numeric',
+        'tgl_masuk_pos' => 'nullable|date',
+        'tgl_timb_masuk' => 'nullable|date',
+        'tgl_timb_keluar' => 'nullable|date',
+        'jenis_tebu' => 'nullable|string|max:255',
+        'brix' => 'nullable|string|max:255',
+    ]);
 
-        $timbangan = Tb_Timbangan::findOrFail($id);
-        $timbangan->update($validated);
+    // Ambil data timbangan berdasarkan ID
+    $timbangan = Tb_Timbangan::findOrFail($id);
 
-        return redirect('/timbangan')->with('success', 'Data timbangan berhasil diperbarui.');
-    }
+    // Update data timbangan
+    $timbangan->update($validated);
+
+    // Ubah status_timbang menjadi selesai_ditimbang
+    $timbangan->status_timbang = 'selesai_ditimbang';
+    $timbangan->save();
+
+    return redirect('/timbangan')->with('success', 'Data timbangan berhasil diperbarui.');
+}
+
 
     // Hapus data dari database
     public function destroy($id)

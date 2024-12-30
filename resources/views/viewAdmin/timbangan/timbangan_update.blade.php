@@ -137,14 +137,15 @@
             </div>
 
             <div class="col-lg-6">
-                <div class="form-group mb-4">
-                    <label class="label">Tanggal Masuk Pos</label>
+            <div class="form-group mb-4">
+                    <label class="label">Tanggal</label>
                     <div class="form-group position-relative">
-                        <input type="datetime-local" name="tgl_masuk_pos" class="form-control text-dark ps-5 h-58"
-                            value="{{ $timbangan->tgl_masuk_pos ?? now()->format('Y-m-d\TH:i') }}">
+                        <input type="date" name="tanggal" class="form-control text-dark ps-5 h-58"
+                            value="{{ $timbangan->tanggal ?? now()->format('Y-m-d') }}">
                         <i
                             class="ri-calendar-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
                     </div>
+                </div>
                 </div>
             </div>
 
@@ -202,4 +203,15 @@
             onclick="window.location.href='/timbangan'">Back</button>
         <button type="submit" class="btn btn-primary fw-semibold text-white py-3 px-4 mt-2 w-30">Save</button>
     </form>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function (e) {
+            const tanggalInput = document.querySelector('input[name="tanggal"]');
+            if (!tanggalInput.value) {
+                const now = new Date();
+                const formattedDate = now.toISOString().split('T')[0]; // Format menjadi YYYY-MM-DD
+                tanggalInput.value = formattedDate;
+            }
+        });
+    </script>
 @endsection
