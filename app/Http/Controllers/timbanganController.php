@@ -12,7 +12,7 @@ class TimbanganController extends Controller
     // Tampilkan daftar data timbangan
     public function index()
     {
-        $timbangans = Tb_Timbangan::with(['masterKebunByNama', 'masterPetaniByNama'])->get();
+        $timbangans = Tb_Timbangan::with(['masterKebunByNama', 'masterPetaniByNama', 'masterKebunByKontrak'])->get();
         return view('viewAdmin.timbangan.index', compact('timbangans'));
     }
 
@@ -65,7 +65,7 @@ class TimbanganController extends Controller
             return redirect('/timbangan')->with('error', 'Data timbangan tidak ditemukan.');
         }
 
-        return view('viewAdmin.timbangan.edit', compact('timbangan', 'kebuns'));
+        return view('viewAdmin.timbangan.timbangan_update', compact('timbangan', 'kebuns'));
     }
 
     // Update data di database

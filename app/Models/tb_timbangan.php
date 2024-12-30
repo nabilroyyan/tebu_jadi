@@ -9,6 +9,7 @@ class Tb_Timbangan extends Model
 {
     use HasFactory;
     protected $table = 'tb_timbangan';
+    protected $primaryKey = 'id_timbangan';
     protected $fillable = [
         'no_spa',
         'tanggal',
@@ -31,6 +32,10 @@ class Tb_Timbangan extends Model
     public function masterKebunByNama()
     {
         return $this->belongsTo(Kebun::class, 'nama_kebun', 'nama_kebun');
+    }
+    public function masterKebunByKontrak()
+    {
+        return $this->belongsTo(Kebun::class, 'nomer_kontrak', 'nomer_kontrak');
     }
 
     public function masterPetaniByNama()
