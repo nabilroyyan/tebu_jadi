@@ -36,13 +36,11 @@
                         <td>= Rp ${formatDecimal(dataMasuk.neto * 0.9 * konstanta.nilaiGula)}</td>
                     </tr>
                     <tr>
-                        <td>2. ${body3Row2.menu}</td>
-                        <td>: ${formatDecimal(dataMasuk.bruto)} Kq * Rp ${formatDecimal(konstanta.nilaiTetes)}</td>
-                        <td>= Rp ${formatDecimal(dataMasuk.bruto * konstanta.nilaiTetes)}</td>
+                      
                     </tr>
                 `);
 
-                var totalPendapatan = (dataMasuk.bruto * konstanta.nilaiTetes) + (dataMasuk.tara * 0.9 * konstanta.nilaiGula);
+                var totalPendapatan = (dataMasuk.tara * 0.9 * konstanta.nilaiGula);
                 $('#total-pendapatan').text(`Jumlah Pendapatan Petani = Rp ${formatDecimal(totalPendapatan)}`);
             },
             error: function(xhr, status, error) {

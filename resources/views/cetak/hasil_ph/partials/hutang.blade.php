@@ -36,81 +36,7 @@
                 }
 
                 var rows = `
-                    <tr>
-                        <td>1. ${body4s.find(item => item.id === 1)?.menu || ''}</td>
-                        <td>: ${formatCurrency(konstata.biayaUpah)} Ku tebu masuk </td>
-                        <td>= ${formatCurrency(0)}</td>
-                    </tr>
-                    <tr>
-                        <td>2. ${body4s.find(item => item.id === 2)?.menu || ''}</td>
-                        <td>: ${formatCurrency(dataMasuk.neto)} Ku * ${formatCurrency(konstata.angkutTruk)} </td>
-                        <td>= ${formatCurrency(safeMultiply(dataMasuk.neto, konstata.angkutTruk))}</td>
-                    </tr>
-                    <tr>
-                        <td>3. ${body4s.find(item => item.id === 3)?.menu || ''}</td>
-                        <td>: ${formatCurrency(0)} Ku * ${formatCurrency(0)} </td>
-                        <td>= ${formatCurrency(0)}</td>
-                    </tr>
-                    <tr>
-                        <td>4. ${body4s.find(item => item.id === 4)?.menu || ''}</td>
-                        <td>: ${formatCurrency(dataMasuk.bruto)} Kg * ${formatCurrency(konstata.biayaEksplo)} </td>
-                        <td>= ${formatCurrency(safeMultiply(dataMasuk.bruto, konstata.biayaEksplo))}</td>
-                    </tr>
-                    <tr>
-                        <td>5. ${body4s.find(item => item.id === 5)?.menu || ''}</td>
-                        <td>: ${formatCurrency(dataMasuk.bruto * 0.1)} Ha * ${formatCurrency(konstata.biayaRDKK)} </td>
-                        <td>= ${formatCurrency(safeMultiply(dataMasuk.bruto * 0.1, konstata.biayaRDKK))}</td>
-                    </tr>
-                    <tr>
-                        <td>6. ${body4s.find(item => item.id === 6)?.menu || ''}</td>
-                        <td>: ${formatCurrency(dataMasuk.neto)} Ku * ${formatCurrency(konstata.biayaLinting)} </td>
-                        <td>= ${formatCurrency(safeMultiply(dataMasuk.neto, konstata.biayaLinting))}</td>
-                    </tr>
-                    <tr>
-                        <td>7. ${body4s.find(item => item.id === 7)?.menu || ''}</td>
-                        <td>: ${formatCurrency(dataMasuk.tara * 0.9)} Ku * ${formatCurrency(konstata.biaaZAK)} </td>
-                        <td>= ${formatCurrency(safeMultiply(dataMasuk.tara * 0.9, konstata.biaaZAK))}</td>
-                    </tr>
-                    <tr>
-                        <td>8. ${body4s.find(item => item.id === 8)?.menu || ''}</td>
-                        <td>: ${formatCurrency(dataMasuk.tara * 0.1)} Ku * ${formatCurrency(konstata.biaaZAK)} </td>
-                        <td>= ${formatCurrency(safeMultiply(dataMasuk.tara * 0.1, konstata.biaaZAK))}</td>
-                    </tr>
-                    <tr>
-                        <td>9. ${body4s.find(item => item.id === 9)?.menu || ''}</td>
-                        <td>: ${formatCurrency(dataMasuk.neto)} Ku * ${formatCurrency(konstata.iuranAPTRI)} </td>
-                        <td>= ${formatCurrency(safeMultiply(dataMasuk.neto, konstata.iuranAPTRI))}</td>
-                    </tr>
-                    <tr>
-                        <td>10. ${body4s.find(item => item.id === 10)?.menu || ''}</td>
-                        <td>: ----------------> </td>
-                        <td>= ${formatCurrency(0)}</td>
-                    </tr>
-                    <tr>
-                        <td>11. ${body4s.find(item => item.id === 11)?.menu || ''}</td>
-                        <td>: ----------------> </td>
-                        <td>= ${formatCurrency(0)}</td>
-                    </tr>
-                    <tr>
-                        <td>12. ${body4s.find(item => item.id === 12)?.menu || ''}</td>
-                        <td>: ----------------> </td>
-                        <td>= ${formatCurrency(293)}</td>
-                    </tr>
-                    <tr>
-                        <td>13. ${body4s.find(item => item.id === 13)?.menu || ''}</td>
-                        <td>: kont: </td>
-                        <td>= ${formatCurrency(0)}</td>
-                    </tr>
-                    <tr>
-                        <td>14. ${body4s.find(item => item.id === 14)?.menu || ''}</td>
-                        <td>: kont: </td>
-                        <td>= ${formatCurrency(0)}</td>
-                    </tr>
-                    <tr>
-                        <td>15. ${body4s.find(item => item.id === 15)?.menu || ''}</td>
-                        <td>: ${formatCurrency(dataMasuk.neto)} Ku * ${formatCurrency(konstata.biayaCrane)} </td>
-                        <td>= ${formatCurrency(safeMultiply(dataMasuk.neto, konstata.biayaCrane))}</td>
-                    </tr>
+                   
                 `;
 
                 $('#table-hutang').html(rows);
@@ -126,17 +52,16 @@
                     safeMultiply(dataMasuk.neto, konstata.biayaCrane)
                 ].reduce((a, b) => a + b, 0);
 
-                $('#jumlah-hutang').text(`Jumlah biaya operasional = ${formatCurrency(totalHutang)}`);
+                $('#jumlah-hutang').text(`Sisa Hutang Di PG : ${formatCurrency(totalSisa)}`);
 
                 var nilaibruto = parseFloat(konstata.nilaibruto) || 0;
                 var nilaiGula = parseFloat(konstata.nilaiGula) || 0;
                 var sisaPinjaman = parseFloat(response.sisaPinjaman) || 0; 
 
                 var uangbersih = (dataMasuk.bruto * nilaibruto) + (dataMasuk.tara * 0.9 * nilaiGula);
-                var totalPendapatan = (dataMasuk.bruto * nilaibruto) + (dataMasuk.tara * 0.9 * nilaiGula) - (totalHutang) - sisaPinjaman;
+                var totalPendapatan = (dataMasuk.tara * 0.9 * nilaiGula) - (totalSisa);
                 $('#jumlah-pendapatan').text(`Jumlah Pendapatan Petani (A-B) = ${formatCurrency(totalPendapatan)}`);
-                $('#sisa-pinjaman').text(`Sisa Hutang Di PG : ${formatCurrency(totalSisa)}`);
-                
+                 
             },
             error: function(xhr, status, error) {
                 console.error('Terjadi kesalahan:', error);
