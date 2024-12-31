@@ -107,7 +107,7 @@
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a href="http://localhost:8000/transaksis" class="menu-link">
+                        <a href="http://localhost:8000/data-masuk" class="menu-link">
                             daftar document timbangan
                         </a>
                     </li>
