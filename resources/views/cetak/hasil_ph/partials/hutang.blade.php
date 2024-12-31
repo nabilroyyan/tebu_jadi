@@ -3,9 +3,9 @@
 </table>
 <div class="line"></div>
 <p style="text-align: right;" id="jumlah-hutang"></p>
-<p>titipan uang gula petani RP: 0</p>
+<p></p>
 <p style="text-align: right;" id="jumlah-pendapatan"></p>
-<p id="sisa-pinjaman">Sisa Pinjaman Di PG : Rp 0</p>
+<p id="sisa-pinjaman"></p>
 <div class="line"></div>
 <script>
     $(document).ready(function() {
@@ -20,6 +20,7 @@
                 var dataMasuk = response.timbangan || {};
                 var konstata = response.konstata || {};
                 var halamanRelated = response.halamanRelated || {};
+                var totalSisa = response.totalSisa || 0;
 
                 $('#header3').text(halamanRelated.header3 || '');
 
@@ -124,16 +125,18 @@
                     safeMultiply(dataMasuk.neto, konstata.iuranAPTRI),
                     safeMultiply(dataMasuk.neto, konstata.biayaCrane)
                 ].reduce((a, b) => a + b, 0);
-//ganti dgn data hutang
-                $('#jumlah-hutang').text(`Jumlah Hutang Petani Pada PG = ${formatCurrency(totalHutang)}`);
+
+                $('#jumlah-hutang').text(`Jumlah biaya operasional = ${formatCurrency(totalHutang)}`);
 
                 var nilaibruto = parseFloat(konstata.nilaibruto) || 0;
                 var nilaiGula = parseFloat(konstata.nilaiGula) || 0;
                 var sisaPinjaman = parseFloat(response.sisaPinjaman) || 0; 
 
+                var uangbersih = (dataMasuk.bruto * nilaibruto) + (dataMasuk.tara * 0.9 * nilaiGula);
                 var totalPendapatan = (dataMasuk.bruto * nilaibruto) + (dataMasuk.tara * 0.9 * nilaiGula) - (totalHutang) - sisaPinjaman;
                 $('#jumlah-pendapatan').text(`Jumlah Pendapatan Petani (A-B) = ${formatCurrency(totalPendapatan)}`);
-                $('#sisa-pinjaman').text(`Sisa Pinjaman Di PG : ${formatCurrency(sisaPinjaman)}`);
+                $('#sisa-pinjaman').text(`Sisa Hutang Di PG : ${formatCurrency(totalSisa)}`);
+                
             },
             error: function(xhr, status, error) {
                 console.error('Terjadi kesalahan:', error);

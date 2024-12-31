@@ -84,8 +84,10 @@ class DocumentController extends Controller
         $body4s = Bodys4::all();
         $anggotas = Anggota::all();
         $halamanRelated = HalamanRelated::find(1);
+        $totalSisa = $dataHutang->sum('sisa');
     
         return response()->json([
+            'totalSisa' => $totalSisa,
             'kebun' => $kebun,
             'timbangan' => $timbangan,
             'dataHutang' => $dataHutang,

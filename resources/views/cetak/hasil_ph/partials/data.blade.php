@@ -21,7 +21,7 @@
                 var body1s = response.body1s;
                 var petani = response.kebun;
                 var body2s = response.body2s;
-                var dataMasuk = response.dataMasuk;
+                var dataMasuk = response.timbangan;
                 var halamanRelated = response.halamanRelated;
 
                 function formatNumber(num) {
@@ -29,36 +29,36 @@
                 }
 
                 $('#body1s-data').html(`
-                    <div>${body1s.find(item => item.id == 1).menu}: ${petani.nomer_kontrak}</div>
-                    <div>${body1s.find(item => item.id == 3).menu}: ${petani.nomer_kontrak}</div>
-                    <div>${body1s.find(item => item.id == 2).menu}: ${petani.nomer_kontrak}</div>
-                    <div>${body1s.find(item => item.id == 7).menu}: ${petani.nomer_kontrak}</div>
-                    <div>${body1s.find(item => item.id == 10).menu}: ${petani.nomer_kontrak}</div>
+                    <div>${body1s.find(item => item.id == 1).menu}: ${petani.nama_petani}</div>
+                    <div>${body1s.find(item => item.id == 3).menu}: ${petani.nama_kebun}</div>
+                    <div>${body1s.find(item => item.id == 2).menu}: ${dataMasuk.no_spa}</div>
+                    <div>${body1s.find(item => item.id == 7).menu}: ${dataMasuk.no_spa}</div>
+                    <div>${body1s.find(item => item.id == 10).menu}: ${dataMasuk.tgl_timb_masuk}</div>
                 `);
 
                 $('#body1s-data-right').html(`
-                    <div>${body1s.find(item => item.id == 4).menu}: ${petani.nomer_kontrak}</div>
+                    <div>${body1s.find(item => item.id == 4).menu}: ${petani.kecamatan}</div>
                     <div>${body1s.find(item => item.id == 5).menu}: ${petani.nomer_kontrak}</div>
-                    <div>${body1s.find(item => item.id == 6).menu}: ${petani.nomer_kontrak}</div>
-                    <div>${body1s.find(item => item.id == 9).menu}: ${petani.nomer_kontrak}</div>
-                    <div>${body1s.find(item => item.id == 8).menu}: ${petani.nomer_kontrak}</div>
+                    <div>${body1s.find(item => item.id == 6).menu}: ${petani.kabupaten}</div>
+                    <div>${body1s.find(item => item.id == 9).menu}: ${dataMasuk.jenis_tebu}</div>
+                    <div>${body1s.find(item => item.id == 8).menu}: ${petani.luas}</div>
                 `);
                 $('#header1').text(halamanRelated.header1);
                 $('#body2s-data').html(`
                     <tr>
-                        <td>${body2s.find(item => item.id == 1).menu}: ${formatNumber(dataMasuk.kuTebu)} Ku</td>
-                        <td>${body2s.find(item => item.id == 7).menu}: ${formatNumber(dataMasuk.gulaPetani * 0.9)} Ku</td>
+                        <td>${body2s.find(item => item.id == 1).menu}: ${formatNumber(dataMasuk.neto)} Ku</td>
+                        <td>${body2s.find(item => item.id == 7).menu}: ${formatNumber(dataMasuk.tara * 0.9)} Ku</td>
                     </tr>
                     <tr>
-                        <td>${body2s.find(item => item.id == 2).menu}: ${formatNumber(dataMasuk.rendemen)} % Gula</td>
-                        <td>${body2s.find(item => item.id == 8).menu}: ${formatNumber(dataMasuk.gulaPetani * 0.1)} Ku</td>
+                        <td>${body2s.find(item => item.id == 2).menu}: ${formatNumber(dataMasuk.brix)} % Gula</td>
+                        <td>${body2s.find(item => item.id == 8).menu}: ${formatNumber(dataMasuk.tara * 0.1)} Ku</td>
                     </tr>
                     <tr>
-                        <td>${body2s.find(item => item.id == 3).menu}: ${formatNumber(dataMasuk.rendemenPetani)} % Gula</td>
-                        <td>${body2s.find(item => item.id == 9).menu}: ${formatNumber(dataMasuk.tetes)} Kg</td>
+                        <td>${body2s.find(item => item.id == 3).menu}: ${formatNumber(dataMasuk.brix)} % Gula</td>
+                        <td>${body2s.find(item => item.id == 9).menu}: ${formatNumber(dataMasuk.tara)} Kg</td>
                     </tr>
                     <tr>
-                        <td colspan="2">${body2s.find(item => item.id == 4).menu}: ${formatNumber(dataMasuk.gulaPetani)} Ku <br>
+                        <td colspan="2">${body2s.find(item => item.id == 4).menu}: ${formatNumber(dataMasuk.tara)} Ku <br>
                             *)${body2s.find(item => item.id == 5).menu}: <br>
                             *)${body2s.find(item => item.id == 6).menu}:
                         </td>
