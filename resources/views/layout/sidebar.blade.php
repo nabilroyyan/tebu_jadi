@@ -49,23 +49,30 @@
                     </ul>
                 </li>
             @endif
-            <li class="menu-item">
-                <a href="javascript:void(0);" class="menu-link menu-toggle active">
-                    <i data-feather="book" class="menu-icon tf-icons"></i>
-                    <span class="title">Timbangan</span>
-                </a>
-                <ul class="menu-sub">
-                    <li class="menu-item">
-                        <a href="/timbangan-create" class="menu-link">
-                            Create
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="/timbangan" class="menu-link">
-                            Tabel
-                        </a>
-                </ul>
-            </li>
+            @if (Auth::user()->can('timbangan.list') || Auth::user()->can('timbangan.create'))
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                        <i data-feather="book" class="menu-icon tf-icons"></i>
+                        <span class="title">Timbangan</span>
+                    </a>
+                    <ul class="menu-sub">
+                        @if (Auth::user()->can('timbangan.create'))
+                            <li class="menu-item">
+                                <a href="/timbangan-create" class="menu-link">
+                                    Create
+                                </a>
+                            </li>
+                        @endif
+                        @if (Auth::user()->can('timbangan.list'))
+                            <li class="menu-item">
+                                <a href="/timbangan" class="menu-link">
+                                    Tabel
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+            @endif
             <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle active">
                     <i data-feather="activity" class="menu-icon tf-icons"></i>
