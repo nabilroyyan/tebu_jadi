@@ -9,7 +9,7 @@
                 <div class="d-flex  align-items-center bg-body justify-content-between ">
                     <h5 class="ms-5">Table Timbangan</h5>
 
-                    <button type="button" class="btn btn-primary text-white me-5" onclick="window.location.href='/kebun-create'">
+                    <button type="button" class="btn btn-primary text-white me-5" onclick="window.location.href='/timbangan-create'">
                         Tambah
                     </button>
                 </div>
@@ -145,7 +145,7 @@
                                                         </li>
                                                         <li>
                                                             <a class="dropdown-item"
-                                                                href="/kebun/{{$item->id_master_kebun}}/delete">
+                                                                href="/timbangan/{{$item->id_timbangan}}/delete">
                                                                 <i data-feather="trash-2"></i>
                                                                 Remove
                                                             </a>

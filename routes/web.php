@@ -7,6 +7,7 @@ use App\Http\Controllers\KebunController;
 use App\Http\Controllers\RolePermissionController;
 use App\http\Controllers\TimbanganController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DocumentController;
 
 Route::view('/', 'homeView/home')->middleware('guest');
 
@@ -41,14 +42,19 @@ Route::put('api/transaksis/{id}', [TbTransaksiController::class, 'updateStatus']
 Route::get('transaksis/{id}', [TbTransaksiController::class, 'show']);
 Route::get('/kebun/{id}/delete', [KebunController::class, 'destroy']);
 
+Route::get('/data-report', [DocumentController::class, 'showReport']);
+Route::get('/api/report-data/{id}', [DocumentController::class, 'getReportData']);
+Route::get('/data-masuk', [DocumentController::class, 'showDataMasuk']);
+Route::get('/api/data-masuk', [DocumentController::class, 'getDataMasuk']);
+
 Route::get('/timbangan', [TimbanganController::class, 'index'])->name('timbangan.index');
 Route::get('/timbangan-create', [TimbanganController::class, 'create'])->name('timbangan.create');
 Route::post('/timbangan-store', [TimbanganController::class, 'store'])->name('timbangan.store');
 Route::get('/kebun-details/{id}', [TimbanganController::class, 'getKebunDetails']);
 Route::get('/timbangan/{id}/edit', [TimbanganController::class, 'edit'])->name('timbangan.edit');
 Route::post('/timbangan/{id}/update', [TimbanganController::class, 'update'])->name('timbangan.update');
-Route::delete('/timbangan/{id}', [TimbanganController::class, 'destroy'])->name('timbangan.destroy');
-
+Route::get('/timbangan/{id}/delete', [TimbanganController::class, 'destroy'])->name('timbangan.destroy');
+Route::get('/api/timbangan', [TimbanganController::class, 'apiGetAllTimbangan']);
 
 Route::controller(UserController::class)->prefix('/user')->group(function() {
     Route::get('/','index')->name('user.index');
