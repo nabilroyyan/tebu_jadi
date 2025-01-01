@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -27,6 +26,21 @@ class UserSeeder extends Seeder
             'kebun.create',
             'kebun.edit',
             'kebun.delete',
+            'timbangan.list',
+            'timbangan.show',
+            'timbangan.create',
+            'timbangan.edit',
+            'timbangan.delete',
+            'hutang.list',
+            'hutang.show',
+            'hutang.create',
+            'hutang.edit',
+            'hutang.delete',
+            'transaksi.list',
+            'transaksi.show',
+            'transaksi.create',
+            'transaksi.edit',
+            'transaksi.delete',
             'role.management'
         ];
 
@@ -57,6 +71,21 @@ class UserSeeder extends Seeder
             'kebun.create',
             'kebun.edit',
             'kebun.delete',
+            'timbangan.list',
+            'timbangan.show',
+            'timbangan.create',
+            'timbangan.edit',
+            'timbangan.delete',
+            'hutang.list',
+            'hutang.show',
+            'hutang.create',
+            'hutang.edit',
+            'hutang.delete',
+            'transaksi.list',
+            'transaksi.show',
+            'transaksi.create',
+            'transaksi.edit',
+            'transaksi.delete',
             'role.management'
          ]);
 
@@ -68,6 +97,13 @@ class UserSeeder extends Seeder
             'kebun.list',
             'kebun.show',
             'kebun.create',
+            'timbangan.list',
+            'timbangan.show',
+            'timbangan.create',
+            'hutang.list',
+            'hutang.show',
+            'transaksi.list',
+            'transaksi.show',
             'kebun.edit',
          ]);
 
