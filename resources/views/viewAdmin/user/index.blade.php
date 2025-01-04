@@ -83,6 +83,15 @@
                                                                     </form>
                                                                 </li>
                                                             @endif
+                                                            @if (Auth::user()->can('role.management'))
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('user.managePermissions', ['userId' => $user->id]) }}">
+                                                                    <i data-feather="sliders"></i>
+                                                                    Manage Permissions
+                                                                </a>
+                                                            </li>
+                                                            @endif
                                                         </ul>
                                                     </div>
                                                 </td>
