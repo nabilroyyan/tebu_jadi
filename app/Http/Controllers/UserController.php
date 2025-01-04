@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -109,5 +110,34 @@ class UserController extends Controller
         } else {
             return redirect()->route('user.index');
         }
+    }
+    // Assign permissions to a user
+    public function assignPermission(Request $request, $userId)
+    {
+       $user = User::findOrFail($userId);
+       $permissions = $request->permissions;
+
+       $user->syncPermissions($permissions);
+
+        return redirect()->back()->with('success', 'Permissions assigned successfully.');
+    }
+
+    // Remove a permission from a user
+    public function revokePermission($userId, $permissionId)
+    {
+        $role = User::findOrFail($userId);
+        $permission = Permission::findOrFail($permissionId);
+
+        $role->revokePermissionTo($permission);
+
+        return redirect()->back()->with('success', 'Permission revoked successfully.');
+    }
+
+    public function managePermissions($userId)
+    {
+        $user = User::findOrFail($userId);
+        $permissions = Permission::all();
+
+        return view('viewAdmin.user.permission-management', compact('user', 'permissions'));
     }
 }
