@@ -63,6 +63,9 @@ Route::controller(UserController::class)->prefix('/user')->group(function() {
     Route::get('/edit/{id}','edit')->name('user.edit');
     Route::put('/update/{id}','update')->name('user.update');
     Route::delete('/delete/{id}','destroy')->name('user.delete');
+    Route::get('/{userId}/permissions', 'managePermissions')->name('user.managePermissions');
+    Route::post('/{userId}/permissions', 'assignPermission')->name('user.assignPermission');
+    Route::delete('/{userId}/permissions/{permissionId}', 'revokePermission')->name('user.revokePermission');
 });
 
 Route::controller(RolePermissionController::class)->prefix('/role')->group(function() {
