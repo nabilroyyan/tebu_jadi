@@ -21,6 +21,7 @@ class Kebun extends Model
         'kecamatan',
         'kabupaten',
         'nama_petani',
+        'status',
     ];
 
     /**

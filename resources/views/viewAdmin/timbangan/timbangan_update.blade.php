@@ -93,7 +93,7 @@
                                 <option value="proses" {{ $timbangan->status_timbang == 'proses' ? 'selected' : '' }}>
                                     Proses
                                 </option>
-                                <option value="selesai" {{ $timbangan->status_timbang == 'selesai' ? 'selected' : '' }}>
+                                <option value="selesai ditimbang" {{ $timbangan->status_timbang == 'selesai ditimbang' ? 'selected' : '' }}>
                                     Selesai
                                 </option>
                             </select>
@@ -110,7 +110,7 @@
                             <input type="text" name="bruto" class="form-control text-dark ps-5 h-58"
                                 placeholder="Enter Bruto" value="{{ $timbangan->bruto }}">
                             <i
-                                class="ri-scale-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                                class="ri-bubble-chart-fill position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
                         </div>
                     </div>
                 </div>
@@ -122,7 +122,7 @@
                             <input type="text" name="tara" class="form-control text-dark ps-5 h-58"
                                 placeholder="Enter Tara" value="{{ $timbangan->tara }}">
                             <i
-                                class="ri-scale-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                                class="ri-stack-fill position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
                         </div>
                     </div>
                 </div>
@@ -134,7 +134,7 @@
                             <input type="text" name="neto" class="form-control text-dark ps-5 h-58"
                                 placeholder="Enter Neto" value="{{ $timbangan->neto }}">
                             <i
-                                class="ri-scale-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                                class="ri-drop-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
                         </div>
                     </div>
                 </div>
@@ -150,7 +150,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+           
 
             <div class="col-lg-6">
                 <div class="form-group mb-4">
@@ -200,9 +200,10 @@
                     </div>
                 </div>
             </div>
+        </div>
 
             <button type="button" class="btn btn-secondary fw-semibold text-white py-3 px-4 mt-2 w-30"
-                onclick="window.location.href='/timbangan'">Back sksjsjsjshdjshdjshdjshjd</button>
+                onclick="window.location.href='/timbangan'">Back</button>
             <button type="submit" class="btn btn-primary fw-semibold text-white py-3 px-4 mt-2 w-30">Save</button>
             </div>
 

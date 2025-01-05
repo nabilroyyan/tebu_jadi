@@ -10,8 +10,8 @@
                 <div class="form-group mb-4">
                     <label class="label">nama kebun</label>
                     <div class="form-group position-relative">
-                        <input type="text" name="nama_kebun" class="form-control text-dark ps-5 h-58"
-                            placeholder="Enter Name">
+                        <input type="text" autocomplete="off" name="nama_kebun" class="form-control text-dark ps-5 h-58"
+                            placeholder="masukkan nama kebun">
                         <i
                             class="ri-user-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
                     </div>
@@ -21,10 +21,10 @@
                 <div class="form-group mb-4">
                     <label class="label">alamat</label>
                     <div class="form-group position-relative">
-                        <input type="text" name="alamat" class="form-control text-dark ps-5 h-58"
-                            placeholder="Enter Name">
+                        <input type="text" autocomplete="off" name="alamat" class="form-control text-dark ps-5 h-58"
+                            placeholder="Masukkan alamat">
                         <i
-                            class="ri-user-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                            class="flaticon-search position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
                     </div>
                 </div>
             </div>
@@ -32,31 +32,22 @@
                 <div class="form-group mb-4">
                     <label class="label">Luas (m²)</label>
                     <div class="form-group position-relative">
-                        <input type="text" id="luas-input" name="luas" class="form-control text-dark ps-5 h-58"
+                        <input autocomplete="off" type="text" id="luas-input" name="luas" class="form-control text-dark ps-5 h-58"
                             placeholder="Masukkan Luas" />
                         <i
                             class="ri-map-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
                     </div>
                 </div>
             </div>
-            {{-- <div class="col-lg-6">
-            <div class="form-group mb-4">
-                <label class="label">luas</label>
-                <div class="form-group position-relative">
-                    <input name="luas" type="teks" name="kecamatan" class="form-control text-dark ps-5 h-58" placeholder="Enter Phone Number">
-                    <i class="ri-phone-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                </div>
-            </div>
-        </div> --}}
 
             <div class="col-lg-6">
                 <div class="form-group mb-4">
                     <label class="label">Kecamatan</label>
                     <div class="form-group position-relative">
-                        <input name="kecamatan" type="teks" name="kecamatan" class="form-control text-dark ps-5 h-58"
-                            placeholder="Enter Phone Number">
+                        <input autocomplete="off" name="kecamatan" type="teks" name="kecamatan" class="form-control text-dark ps-5 h-58"
+                            placeholder="Masukkan kecamatan">
                         <i
-                            class="ri-phone-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                            class="ri-bar-chart-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
                     </div>
                 </div>
             </div>
@@ -64,10 +55,10 @@
                 <div class="form-group mb-4">
                     <label class="label">kabupaten</label>
                     <div class="form-group position-relative">
-                        <input name="kabupaten" type="teks" name="kabupaten" class="form-control text-dark ps-5 h-58"
-                            placeholder="Enter Phone Number">
+                        <input autocomplete="off" name="kabupaten" type="teks" name="kabupaten" class="form-control text-dark ps-5 h-58"
+                            placeholder="Masukkan kabupaten">
                         <i
-                            class="ri-phone-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                            class="ri-pencil-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
                     </div>
                 </div>
             </div>
@@ -75,27 +66,27 @@
                 <div class="form-group mb-4">
                     <label class="label">Nama Petani</label>
                     <div class="form-group position-relative">
-                        <input name="nama_petani" type="teks" name="nama_petani" class="form-control text-dark ps-5 h-58"
-                            placeholder="Enter Phone Number">
+                        <input autocomplete="off" name="nama_petani" type="teks" name="nama_petani" class="form-control text-dark ps-5 h-58"
+                            placeholder="masukkan nama petani">
                         <i
-                            class="ri-phone-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                            class="flaticon-user position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12">
+            {{-- <div class="col-lg-12">
                 <div class="form-group mb-4">
                     <label class="label">Status</label>
                     <div class="form-group position-relative">
                         <select name="status" class="form-select form-control text-dark ps-5 h-58">
                             <option value="" selected disabled>Pilih Status</option>
-                            <option value="diterima">diterima</option>
-                            <option value="ditolak">ditolak</option>
+                            <option value="Aktif">aktif</option>
+                            <option value="tidak_aktif">tidak aktif</option>
                         </select>
                         <i
                             class="ri-list-ordered position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
 
 

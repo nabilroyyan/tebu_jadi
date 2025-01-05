@@ -78,8 +78,8 @@
                     <div class="form-group position-relative">
                         <select name="status" class="form-select form-control text-dark ps-5 h-58">
                             <option value="" disabled>Pilih Status</option>
-                            <option value="diterima" {{ $kebun->status == 'diterima' ? 'selected' : '' }}>Diterima</option>
-                            <option value="ditolak" {{ $kebun->status == 'ditolak' ? 'selected' : '' }}>Ditolak</option>
+                            <option value="aktif" {{ $kebun->status == 'aktif' ? 'selected' : '' }}>Aktif</option>
+                            <option value="tidak aktif" {{ $kebun->status == 'tidak aktif' ? 'selected' : '' }}>Tidak aktif</option>
                         </select>
                         <i
                             class="ri-list-ordered position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>

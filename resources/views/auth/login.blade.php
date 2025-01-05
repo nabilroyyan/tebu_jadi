@@ -14,13 +14,13 @@
             <div class="card-body p-4">
                 <div class="form-group mb-4">
                     <label class="label">Email</label>
-                    <input type="email" name="email" class="form-control h-58" placeholder="envytheme@info.com">
+                    <input autocomplete="off" type="email" name="email" class="form-control h-58" placeholder="envytheme@info.com">
                 </div>
                 <div class="form-group mb-0">
                     <label class="label">Password</label>
                     <div class="form-group">
                         <div class="password-wrapper position-relative">
-                            <input type="password" name="password" id="password" placeholder="XXXXXXXX" class="form-control h-58 text-dark">
+                            <input autocomplete="off" type="password" name="password" id="password" placeholder="XXXXXXXX" class="form-control h-58 text-dark">
                             <i style="color: #A9A9C8; font-size: 16px; right: 15px !important;"
                                 class="ri-eye-off-line password-toggle-icon translate-middle-y top-50 end-0 position-absolute" aria-hidden="true"></i>
                         </div>

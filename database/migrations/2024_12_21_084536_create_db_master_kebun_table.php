@@ -22,7 +22,7 @@ class CreateDbMasterKebunTable extends Migration
             $table->string('kecamatan', 100);
             $table->string('kabupaten', 100);
             $table->string('nama_petani', 100);
-            $table->enum('status', ['Diterima', 'Ditolak']);
+            $table->enum('status', ['Aktif', 'Tidak aktif']);
             $table->timestamps();
         });
     }

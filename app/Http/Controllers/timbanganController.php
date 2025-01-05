@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Log;
 
 use App\Models\Kebun;
 use App\Models\Tb_Timbangan;
@@ -80,12 +81,15 @@ public function apiGetAllTimbangan()
 
     public function update(Request $request, $id)
 {
+    Log::info('Debug data:', $request->all());
+
     $validated = $request->validate([
+        
         'no_spa' => 'nullable|string|max:255',
         'tanggal' => 'nullable|date',
         'nopol' => 'nullable|string',
         'sopir' => 'nullable|string|max:255',
-        'status_timbang' => 'nullable|in:proses,selesai_ditimbang',
+        'status_timbang' => 'nullable|in:proses,selesai ditimbang',
         'bruto' => 'nullable|numeric',
         'tara' => 'nullable|numeric',
         'neto' => 'nullable|numeric',
@@ -103,7 +107,7 @@ public function apiGetAllTimbangan()
     $timbangan->update($validated);
 
     // Ubah status_timbang menjadi selesai_ditimbang
-    $timbangan->status_timbang = 'selesai_ditimbang';
+    $timbangan->status_timbang = 'selesai ditimbang';
     $timbangan->save();
 
     return redirect('/timbangan')->with('success', 'Data timbangan berhasil diperbarui.');

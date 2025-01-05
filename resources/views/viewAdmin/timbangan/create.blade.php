@@ -60,13 +60,13 @@
                     <div class="form-group mb-4">
                         <label class="label">Nopol</label>
                         <div class="form-group position-relative">
-                            <input type="text" name="nopol" class="form-control text-dark ps-5 h-58"
+                            <input type="text" id="nopol" name="nopol" class="form-control text-dark ps-5 h-58"
                                 placeholder="Masukkan Nomor Polisi">
-                            <i
-                                class="ri-car-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                            <i class="ri-car-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
                         </div>
                     </div>
                 </div>
+                
 
                 <div class="col-lg-6">
                     <div class="form-group mb-4">
@@ -149,6 +149,18 @@
                     document.getElementById('nama_petani').value = '';
                 }
             });
+
+
+            document.getElementById('nopol').addEventListener('input', function () {
+        let value = this.value.replace(/\s+/g, '').toUpperCase(); // Hilangkan spasi & jadikan huruf kapital
+
+        // Format: Huruf 1 spasi Angka 4 spasi Huruf 2 atau 3
+        value = value.replace(/^([A-Z]?)(\d{0,4})([A-Z]*)$/, (match, p1, p2, p3) => {
+            return `${p1} ${p2} ${p3}`.trim(); // Tambahkan spasi di tempat yang benar
+        });
+
+        this.value = value; // Update nilai input
+    });
         </script>
     @endif
 

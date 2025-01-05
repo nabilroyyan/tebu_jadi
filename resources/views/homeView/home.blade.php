@@ -14,25 +14,38 @@
     <meta name="theme-name" content="meghna" />
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset ('')}}landing/assets/images/logopgcandibaru.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('') }}landing/assets/images/logopgcandibaru.png" />
 
     <!-- CSS
   ================================================== -->
     <!-- Fontawesome Icon font -->
-    <link rel="stylesheet" href="{{asset ('')}}landing/assets/{{asset('')}}landing/assets/plugins/themefisher-font/style.css">
+    <link rel="stylesheet"
+        href="{{ asset('') }}landing/assets/{{ asset('') }}landing/assets/plugins/themefisher-font/style.css">
     <!-- bootstrap.min css -->
-    <link rel="stylesheet" href="{{asset ('')}}landing/assets/plugins/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('') }}landing/assets/plugins/bootstrap/bootstrap.min.css">
     <!-- Animate.css -->
-    <link rel="stylesheet" href="{{asset ('')}}landing/assets/plugins/animate-css/animate.css">
+    <link rel="stylesheet" href="{{ asset('') }}landing/assets/plugins/animate-css/animate.css">
     <!-- Magnific popup css -->
-    <link rel="stylesheet" href="{{asset ('')}}landing/assets/plugins/magnific-popup/dist/magnific-popup.css">
+    <link rel="stylesheet" href="{{ asset('') }}landing/assets/plugins/magnific-popup/dist/magnific-popup.css">
     <!-- Slick Carousel -->
-    <link rel="stylesheet" href="{{asset ('')}}landing/assets/plugins/slick-carousel/slick.css">
-    <link rel="stylesheet" href="{{asset ('')}}landing/assets/plugins/slick-carousel/slick-theme.css">
+    <link rel="stylesheet" href="{{ asset('') }}landing/assets/plugins/slick-carousel/slick.css">
+    <link rel="stylesheet" href="{{ asset('') }}landing/assets/plugins/slick-carousel/slick-theme.css">
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="{{asset ('')}}landing/assets/css/style.css">
+    <link rel="stylesheet" href="{{ asset('') }}landing/assets/css/style.css">
 
 
+    <style>
+        #our-team .row {
+            display: flex;
+            justify-content: center; /* Memusatkan elemen secara horizontal */
+            align-items: center; /* Memusatkan elemen secara vertikal (opsional) */
+            flex-wrap: wrap; /* Membungkus elemen jika ruang tidak mencukupi */
+        }
+    
+        .team-member {
+            margin: 15px; /* Tambahkan jarak antar elemen */
+        }
+    </style>
 </head>
 
 <body id="home" data-spy="scroll" data-target=".navbar-nav" data-offset="80">
@@ -59,13 +72,15 @@
 Welcome Slider
 ==================================== -->
 
-    <section class="hero-area overlay" style="background-image: url('{{asset('')}}landing/assets/images/banner/bannergedung.jpg');">
+    <section class="hero-area overlay"
+        style="background-image: url('{{ asset('') }}landing/assets/images/banner/bannergedung.jpg');">
         <!-- <video autoplay muted loop class="hero-video">
   <source src="landing/assets/images/banner/hero-video.mp4" type="video/mp4">
  </video> -->
         <div class="block">
             <div class="logo-candibaru">
-                <img src="landing/assets/images/logopgcandibaru.png" class="img-fluid" alt="logo"style="margin-bottom: 30px;">
+                <img src="landing/assets/images/logopgcandibaru.png" class="img-fluid"
+                    alt="logo"style="margin-bottom: 30px;">
             </div>
             <h1 style="font-size: 70px;">PT PG CANDI BARU</h1>
             <h2><span class="color">Pabrik Gula Candi Baru</span> </h2>
@@ -83,7 +98,7 @@ Sticky Navigation
             <div class="navbar-header w-100">
                 <nav class="navbar navbar-expand-lg navbar-dark px-0">
                     <!-- logo -->
-                    <a class="navbar-brand logo" href="{{asset ('')}}landing/assets/index.html">
+                    <a class="navbar-brand logo" href="{{ asset('') }}landing/assets/index.html">
                         <!-- <img src="landing/assets/images/logo.png" alt="Website Logo" /> -->
                         <img src="landing/assets/images/logopgcandibaru.png" class="img-fluid" alt="logo"
                             style="width: 50px; height: auto;">
@@ -98,25 +113,25 @@ Sticky Navigation
                     <div class="collapse navbar-collapse" id="navbar01">
                         <ul class="navbar-nav navigation-menu ml-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{asset ('')}}landing/assets/#home">Home</a>
+                                <a class="nav-link" href="#home">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{asset ('')}}landing/assets/#about">About</a>
+                                <a class="nav-link" href="#about">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{asset ('')}}landing/assets/#products">Products</a>
+                                <a class="nav-link" href="#products">Products</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{asset ('')}}landing/assets/#projects">Projects</a>
+                                <a class="nav-link" href="#projects">Projects</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{asset ('')}}landing/assets/#our-team">Team</a>
+                                <a class="nav-link" href="#our-team">Team</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{asset ('')}}landing/assets/#news">News</a>
+                                <a class="nav-link" href="#news">News</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{asset ('')}}landing/assets/#contact-us">Contact</a>
+                                <a class="nav-link" href="#contact-us">Contact</a>
                             </li>
                         </ul>
                     </div>
@@ -182,7 +197,8 @@ End Sticky Navigation
                 <div class="col-md-4 text-center wow fadeInUp" data-wow-duration="500ms" data-wow-delay="500ms">
                     <div class="block kill-margin-bottom">
                         <div class="icon-box" style="margin-bottom: 0px;">
-                            <img src="landing/assets/images/about/jempol.jpg" alt="amazing caves coverimage" class="img-fluid">
+                            <img src="landing/assets/images/about/jempol.jpg" alt="amazing caves coverimage"
+                                class="img-fluid">
                         </div>
                         <!-- Express About Yourself -->
                         <div class="content text-center" style="padding: 20px;">
@@ -257,7 +273,8 @@ Start Call To Action
                     <p>Pesan yang anda kirimkan dapat membantu kami terus memperbaiki kualitas produk kami.
                         <br>Gabung bersama kami.
                     </p>
-                    <a class="btn btn-main smooth-scroll" href="{{asset ('')}}landing/assets/#contact-us">Hubungi Kami</a>
+                    <a class="btn btn-main smooth-scroll"
+                        href="{{ asset('') }}landing/assets/#contact-us">Hubungi Kami</a>
                 </div>
             </div> <!-- End row -->
         </div> <!-- End container -->
@@ -284,10 +301,11 @@ Start Call To Action
                         <img src="landing/assets/images/portfolio/rajagula.jpg" alt="">
                         <div class="caption">
                             <a class="search-icon image-popup" data-effect="mfp-with-zoom"
-                                href="{{asset ('')}}landing/assets/images/portfolio/rajagula.jpg" data-lightbox="image-1">
+                                href="{{ asset('') }}landing/assets/images/portfolio/rajagula.jpg"
+                                data-lightbox="image-1">
                                 <i class="tf-ion-android-search"></i>
                             </a>
-                            <h4><a href="{{asset ('')}}landing/assets/">Produk Gula</a></h4>
+                            <h4><a href="{{ asset('') }}landing/assets/">Produk Gula</a></h4>
                             <p class="mb-0">Produk unggulan dari tebu - tebu pilihan yang manis bersih dan segar</p>
                         </div>
                     </div>
@@ -297,10 +315,11 @@ Start Call To Action
                         <img src="landing/assets/images/portfolio/produktetes.jpg" alt="">
                         <div class="caption">
                             <a class="search-icon image-popup" data-effect="mfp-with-zoom"
-                                href="{{asset ('')}}landing/assets/images/portfolio/produktetes.jpg" data-lightbox="image-1">
+                                href="{{ asset('') }}landing/assets/images/portfolio/produktetes.jpg"
+                                data-lightbox="image-1">
                                 <i class="tf-ion-android-search"></i>
                             </a>
-                            <h4><a href="{{asset ('')}}landing/assets/">Produk Tetes</a></h4>
+                            <h4><a href="{{ asset('') }}landing/assets/">Produk Tetes</a></h4>
                             <p class="mb-0">Produk tetes dengan kualitas terbaik</p>
                         </div>
                     </div>
@@ -310,10 +329,11 @@ Start Call To Action
                         <img src="landing/assets/images/portfolio/ampas.jpg" alt="">
                         <div class="caption">
                             <a class="search-icon image-popup" data-effect="mfp-with-zoom"
-                                href="{{asset ('')}}landing/assets/images/portfolio/ampas.jpg" data-lightbox="image-1">
+                                href="{{ asset('') }}landing/assets/images/portfolio/ampas.jpg"
+                                data-lightbox="image-1">
                                 <i class="tf-ion-android-search"></i>
                             </a>
-                            <h4><a href="{{asset ('')}}landing/assets/">Produk Ampas</a></h4>
+                            <h4><a href="{{ asset('') }}landing/assets/">Produk Ampas</a></h4>
                             <p class="mb-0">Produk ampas yang bersih dan murni dari hasil tebu produksi sendiri</p>
                         </div>
                     </div>
@@ -373,7 +393,8 @@ Start Call To Action
                         <div class="item text-center">
 
                             <div class="title text-center">
-                                <img src="landing/assets/images/about/angkut.jpg" class="img-fluid centered-image" alt="Meghna">
+                                <img src="landing/assets/images/about/angkut.jpg" class="img-fluid centered-image"
+                                    alt="Meghna">
                             </div>
 
                             <div class="client-info">
@@ -400,7 +421,8 @@ Start Call To Action
                         <div class="item text-center">
 
                             <div class="title text-center">
-                                <img src="landing/assets/images/about/petani.jpg" class="img-fluid centered-image" alt="Meghna">
+                                <img src="landing/assets/images/about/petani.jpg" class="img-fluid centered-image"
+                                    alt="Meghna">
                             </div>
 
                             <div class="client-info">
@@ -413,7 +435,8 @@ Start Call To Action
                         <div class="item text-center">
 
                             <div class="title text-center">
-                                <img src="landing/assets/images/about/drone.jpg" class="img-fluid centered-image" alt="Meghna">
+                                <img src="landing/assets/images/about/drone.jpg" class="img-fluid centered-image"
+                                    alt="Meghna">
                             </div>
 
                             <div class="client-info">
@@ -504,36 +527,7 @@ Start Our Team
                     <!-- /section title -->
                 </div>
 
-                <!-- team member -->
-                <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-duration="500ms">
-                    <div class="team-member">
-                        <div class="member-photo">
-                            <!-- member photo -->
-                            <img class="img-fluid" src="landing/assets/images/team/hanaan.jpg" alt="Meghna">
-                            <!-- /member photo -->
 
-                            <!-- member social profile -->
-                            <div class="mask">
-                                <ul class="list-inline">
-                                    <li class="list-inline-item"><a href="{{asset ('')}}landing/assets/https://www.instagram.com/hanaan_firdaus"><i
-                                                class="tf-ion-social-instagram"></i></a></li>
-                                </ul>
-                            </div>
-                            <!-- /member social profile -->
-                        </div>
-
-                        <!-- member name & designation -->
-                        <div class="member-meta">
-                            <h4 class="h5">Hanaan Firdaus Dewanto</h4>
-                            <span>Intern</span>
-                            <p>Mahasiswa S1 Jurusan Sistem Informasi Bina Nusantara Malang</p>
-                        </div>
-                        <!-- /member name & designation -->
-                        <!-- /about member -->
-
-                    </div>
-                </div>
-                <!-- end team member -->
 
                 <!-- team member -->
                 <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-duration="500ms" data-wow-delay="200ms">
@@ -546,7 +540,8 @@ Start Our Team
                             <!-- member social profile -->
                             <div class="mask">
                                 <ul class="list-inline">
-                                    <li class="list-inline-item"><a href="{{asset ('')}}landing/assets/https://www.instagram.com/vrayoga_"><i
+                                    <li class="list-inline-item"><a
+                                            href="{{ asset('') }}landing/assets/https://www.instagram.com/vrayoga_"><i
                                                 class="tf-ion-social-instagram"></i></a></li>
                                 </ul>
                             </div>
@@ -576,7 +571,8 @@ Start Our Team
                             <!-- member social profile -->
                             <div class="mask">
                                 <ul class="list-inline">
-                                    <li class="list-inline-item"><a href="{{asset ('')}}landing/assets/https://www.instagram.com/nbryyn"><i
+                                    <li class="list-inline-item"><a
+                                            href="{{ asset('') }}landing/assets/https://www.instagram.com/nbryyn"><i
                                                 class="tf-ion-social-instagram"></i></a></li>
                                 </ul>
                             </div>
@@ -606,7 +602,8 @@ Start Our Team
                             <!-- member social profile -->
                             <div class="mask">
                                 <ul class="list-inline">
-                                    <li class="list-inline-item"><a href="{{asset ('')}}landing/assets/https://www.instagram.com/setyve_v2"><i
+                                    <li class="list-inline-item"><a
+                                            href="{{ asset('') }}landing/assets/https://www.instagram.com/setyve_v2"><i
                                                 class="tf-ion-social-instagram"></i></a></li>
                                 </ul>
                             </div>
@@ -627,7 +624,7 @@ Start Our Team
 
             </div> <!-- End row -->
         </div> <!-- End container -->
-    </section> <!-- End section -->
+    </section> 
 
     <!-- Start Socials Section
 =========================================== -->
@@ -636,7 +633,8 @@ Start Our Team
             <div class="row">
                 <div class="col-md-12 text-center">
                     <h2>Berhubung Dengan Kami di Media Sosial</h2>
-                    <a class="btn btn-main smooth-scroll" href="{{asset ('')}}landing/assets/#social">Media Sosial</a>
+                    <a class="btn btn-main smooth-scroll" href="{{ asset('') }}landing/assets/#social">Media
+                        Sosial</a>
                 </div>
             </div>
         </div> <!-- End row -->
@@ -661,13 +659,16 @@ Start Our Team
                 <article class="col-lg-4 col-md-6 wow fadeInUp" data-wow-duration="500ms">
                     <div class="post-block">
                         <div class="media-wrapper">
-                            <img src="landing/assets/images/blog/berita1.jpeg" alt="amazing caves coverimage" class="img-fluid">
+                            <img src="landing/assets/images/blog/berita1.jpeg" alt="amazing caves coverimage"
+                                class="img-fluid">
                         </div>
                         <div class="content">
-                            <h3><a href="{{asset ('')}}landing/assets/blog.html">Topik K3 Bulan Juni : Bahaya Listrik</a></h3>
+                            <h3><a href="{{ asset('') }}landing/assets/blog.html">Topik K3 Bulan Juni : Bahaya
+                                    Listrik</a></h3>
                             <p>Bahaya listrik ada di hampir semua tempat kerja karena menggunakan listrik sebagai sumber
                                 energinya...</p>
-                            <a class="btn btn-transparent" href="{{asset ('')}}landing/assets/blog-single.html">Read more</a>
+                            <a class="btn btn-transparent"
+                                href="{{ asset('') }}landing/assets/blog-single.html">Read more</a>
                         </div>
                     </div>
                 </article>
@@ -677,13 +678,15 @@ Start Our Team
                 <article class="col-lg-4 col-md-6 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="200ms">
                     <div class="post-block">
                         <div class="media-wrapper">
-                            <img src="landing/assets/images/blog/berita2.jpeg" alt="amazing caves coverimage" class="img-fluid">
+                            <img src="landing/assets/images/blog/berita2.jpeg" alt="amazing caves coverimage"
+                                class="img-fluid">
                         </div>
                         <div class="content">
-                            <h3><a href="{{asset ('')}}landing/assets/blog.html">Security Wanita</a></h3>
+                            <h3><a href="{{ asset('') }}landing/assets/blog.html">Security Wanita</a></h3>
                             <p>Meskipun pekerjaan menjaga keamanan terkesan sangat maskulin, tapi di era sekarang ini,
                                 pekerjaan tersebut...</p>
-                            <a class="btn btn-transparent" href="{{asset ('')}}landing/assets/blog-single.html">Read more</a>
+                            <a class="btn btn-transparent"
+                                href="{{ asset('') }}landing/assets/blog-single.html">Read more</a>
                         </div>
                     </div>
                 </article>
@@ -693,14 +696,17 @@ Start Our Team
                 <article class="col-lg-4 col-md-6 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="400ms">
                     <div class="post-block">
                         <div class="media-wrapper">
-                            <img src="landing/assets/images/blog/berita3.jpg" alt="amazing caves coverimage" class="img-fluid">
+                            <img src="landing/assets/images/blog/berita3.jpg" alt="amazing caves coverimage"
+                                class="img-fluid">
                         </div>
 
                         <div class="content">
-                            <h3><a href="{{asset ('')}}landing/assets/blog.html">Hari Kebangkitan Nasional ke-116</a></h3>
+                            <h3><a href="{{ asset('') }}landing/assets/blog.html">Hari Kebangkitan Nasional
+                                    ke-116</a></h3>
                             <p>Hari Kebangkitan Nasional adalah momentum bagi kita semua untuk bersatu dalam semangat
                                 kebangsaan...</p>
-                            <a class="btn btn-transparent" href="{{asset ('')}}landing/assets/blog-single.html">Read more</a>
+                            <a class="btn btn-transparent"
+                                href="{{ asset('') }}landing/assets/blog-single.html">Read more</a>
                         </div>
                     </div>
                 </article>
@@ -708,7 +714,7 @@ Start Our Team
 
                 <div class="col-12">
                     <div class="all-post text-center">
-                        <a class="btn btn-main" href="{{asset ('')}}landing/assets/blog.html">View All Post</a>
+                        <a class="btn btn-main" href="{{ asset('') }}landing/assets/blog.html">View All Post</a>
                     </div>
                 </div>
             </div> <!-- end row -->
@@ -811,11 +817,14 @@ Start Our Team
                         <!-- Footer Social Links -->
                         <div class="social-icon">
                             <ul class="list-inline">
-                                <li class="list-inline-item"><a href="{{asset ('')}}landing/assets/https://www.facebook.com/pg.candibaru.9"><i
+                                <li class="list-inline-item"><a
+                                        href="{{ asset('') }}landing/assets/https://www.facebook.com/pg.candibaru.9"><i
                                             class="tf-ion-social-facebook"></i></a></li>
-                                <li class="list-inline-item"><a href="{{asset ('')}}landing/assets/https://www.instagram.com/pg_candibaru"><i
+                                <li class="list-inline-item"><a
+                                        href="{{ asset('') }}landing/assets/https://www.instagram.com/pg_candibaru"><i
                                             class="tf-ion-social-instagram"></i></a></li>
-                                <li class="list-inline-item"><a href="{{asset ('')}}landing/assets/https://www.youtube.com/@pgcandibaru2647"><i
+                                <li class="list-inline-item"><a
+                                        href="{{ asset('') }}landing/assets/https://www.youtube.com/@pgcandibaru2647"><i
                                             class="tf-ion-social-youtube"></i></a></li>
                             </ul>
                         </div>
@@ -823,10 +832,10 @@ Start Our Team
 
                         <!-- copyright -->
                         <div class="copyright text-center">
-                            <a href="{{asset ('')}}landing/assets/">
+                            <a href="{{ asset('') }}landing/assets/">
                                 <!-- <img src="landing/assets/images/logo-meghna.png" alt="Meghna" />  -->
-                                <img src="landing/assets/images/logopgcandibaru.png" class="img-fluid" alt="logo"width="60px"
-                                    height="auto">
+                                <img src="landing/assets/images/logopgcandibaru.png" class="img-fluid"
+                                    alt="logo"width="60px" height="auto">
                                 <g id="Page-1" stroke="none" stroke-width="1" fill="none"
                                     fill-rule="evenodd">
                                     <g id="Group" transform="translate(2.000000, 2.000000)" stroke="#57CBCC"
@@ -857,22 +866,22 @@ Start Our Team
  =====================================-->
 
     <!-- Main jQuery -->
-    <script src="{{asset('')}}landing/assets/plugins/jquery/jquery.min.js"></script>
+    <script src="{{ asset('') }}landing/assets/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 3.1 -->
-    <script src="{{asset('')}}landing/assets/plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="{{ asset('') }}landing/assets/plugins/bootstrap/bootstrap.min.js"></script>
     <!-- Slick Carousel -->
-    <script src="{{asset('')}}landing/assets/plugins/slick-carousel/slick.min.js"></script>
+    <script src="{{ asset('') }}landing/assets/plugins/slick-carousel/slick.min.js"></script>
     <!-- Portfolio Filtering -->
-    <script src="{{asset('')}}landing/assets/plugins/filterzr/jquery.filterizr.min.js"></script>
+    <script src="{{ asset('') }}landing/assets/plugins/filterzr/jquery.filterizr.min.js"></script>
     <!-- Magnific popup -->
-    <script src="{{asset('')}}landing/assets/plugins/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+    <script src="{{ asset('') }}landing/assets/plugins/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
     <!-- Google Map API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgeuuDfRlweIs7D6uo4wdIHVvJ0LonQ6g"></script>
-    <script src="{{asset('')}}landing/assets/plugins/google-map/gmap.js"></script>
+    <script src="{{ asset('') }}landing/assets/plugins/google-map/gmap.js"></script>
     <!-- wow.min Script -->
-    <script src="{{asset('')}}landing/assets/plugins/wow/wow.min.js"></script>
+    <script src="{{ asset('') }}landing/assets/plugins/wow/wow.min.js"></script>
     <!-- Custom js -->
-    <script src="{{asset('')}}landing/assets/js/script.js"></script>
+    <script src="{{ asset('') }}landing/assets/js/script.js"></script>
 
 </body>
 

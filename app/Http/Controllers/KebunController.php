@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Log;
 
 use App\Models\Kebun;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ class KebunController extends Controller
             'kecamatan' => $request->kecamatan,
             'kabupaten' => $request->kabupaten,
             'nama_petani' => $request->nama_petani,
-            'status' => $request->status,
+            'status' => "aktif",
         ];
 
         Kebun::create($data);

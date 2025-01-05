@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('nama_petani');
             $table->string('nopol');
             $table->string('sopir');
-            $table->enum('status_timbang', ['proses', 'selesai_ditimbang']);
+            $table->enum('status_timbang', ['proses', 'selesai ditimbang']);
             $table->float('bruto', 10, 2)->nullable();
             $table->float('tara', 10, 2)->nullable();
             $table->float('neto', 10, 2)->nullable();
@@ -42,4 +42,3 @@ return new class extends Migration
         Schema::dropIfExists('tb_timbangan');
     }
 };
- 
