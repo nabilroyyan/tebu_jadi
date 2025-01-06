@@ -1,183 +1,92 @@
 @extends('layout.mainLayout')
 
 @section('content')
-<!-- Container for table and chatbot -->
-<div class="container">
-    <!-- Tabel Data Masuk -->
-    <div class="tab-content" id="myTabContent">
-        <h2 class="table-title">List Item</h2>
-        <table id="data-masuk-table" class="styled-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Netto</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Chatbot Section -->
-    <div id="chat-area" class="custom-chat-area">
-        <h2 class="chat-title">Quick Question</h2>
-        <div id="message-container" class="custom-message-container"></div>
-
-        <!-- Input section for user to type their message -->
-        <div class="custom-message-box">
-            <textarea class="custom-textarea" placeholder="Masukkan teks di sini"></textarea>
-            <button id="send-btn" class="custom-send-btn">Kirim</button>
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <div class="card bg-white border-0 rounded-10 mb-4">
+                <div class="d-flex align-items-center bg-body justify-content-between">
+                    <h5 class="ms-5">List Item</h5>
+                </div>
+            </div>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="preview-tab-pane" role="tabpanel"
+                    aria-labelledby="preview-tab" tabindex="0">
+                    <div class="default-table-area members-list">
+                        <div class="table-responsive">
+                            <table class="table align-middle" id="myTable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Netto</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Data will be inserted here by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-@endsection
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-   $(document).ready(function() {
-        console.log('Document Ready: JavaScript file loaded and executing.');
+    <script>
+        // Fetch data from the API and populate the table
+        fetch('http://localhost:8000/api/data-masuk')
+            .then(response => response.json())
+            .then(data => {
+                console.log('Data fetched successfully:', data);
 
-        $(document).ready(function() {
-    console.log('Document Ready: JavaScript file loaded and executing.');
+                const dataMasukList = document.querySelector('#myTable tbody');
+                let html = '';
 
-    // AJAX request to get data from the API
-    $.ajax({
-        url: 'http://localhost:8000/api/data-masuk', // URL of your API
-        method: 'GET',
-        beforeSend: function() {
-            console.log('AJAX request is about to be sent.');
-        },
-        success: function(response) {
-            console.log('AJAX Success:', response);
-            if (response && response.dataMasuk) {
-                var rows = '';
-                response.dataMasuk.forEach(function(data) {
-                    rows += `
-                        <tr>
-                            <td>${data.id_timbangan}</td> <!-- Menampilkan id_timbangan -->
-                            <td>${data.neto}</td> <!-- Menampilkan netto -->
+                if (data && data.dataMasuk) {
+                    data.dataMasuk.forEach((item) => {
+                        html += `<tr>
+                            <td>${item.id_timbangan}</td>
+                            <td>${item.neto}</td>
                             <td>
                                 <a href="javascript:void(0);" 
                                    class="view-document" 
-                                   data-encrypted-id="${data.encrypted_id}">show</a>
+                                   data-encrypted-id="${item.encrypted_id}">show</a>
                             </td>
-                        </tr>
-                    `;
-                });
-                $('#data-masuk-table tbody').html(rows);
+                        </tr>`;
+                    });
 
-                $('.view-document').on('click', function() {
-                    var encryptedId = $(this).data('encrypted-id');
-                    var form = document.createElement('form');
+                    dataMasukList.innerHTML = html;
+                } else {
+                    console.error('No data found in response.');
+                }
+            })
+            .catch(error => console.error('Error fetching data:', error));
+
+        // Use event delegation to handle clicks on dynamically added elements
+        document.querySelector('#myTable').addEventListener('click', function (event) {
+            if (event.target && event.target.classList.contains('view-document')) {
+                event.preventDefault();
+
+                const encryptedId = event.target.getAttribute('data-encrypted-id');
+                console.log('Show button clicked, encrypted ID:', encryptedId);
+
+                if (encryptedId) {
+                    const form = document.createElement('form');
                     form.method = 'GET';
-                    form.action = '/data-report'; // This is the correct route
+                    form.action = '/data-report';
 
-                    var input = document.createElement('input');
+                    const input = document.createElement('input');
                     input.type = 'hidden';
                     input.name = 'Id';
-                    input.value = encryptedId; // Use encrypted ID here
+                    input.value = encryptedId;
 
                     form.appendChild(input);
                     document.body.appendChild(form);
                     form.submit();
-                });
-            } else {
-                console.error('Data not found in response.');
-            }
-        },
-        error: function(xhr, status, error) {
-            console.error('AJAX Error:', status, error);
-        },
-        complete: function() {
-            console.log('AJAX request completed.');
-        }
-    });
-});
-
-        // API endpoint untuk chatbot
-        const apiEndpoint = 'http://localhost:5000/api/chatbot';
-        
-        // Select elements untuk chatbot
-        const messageContainer = document.getElementById('message-container');
-        
-        // Fungsi untuk membuat text area baru
-        function createTextArea(text, isResponse = false) {
-            const messageBox = document.createElement('div');
-            messageBox.classList.add('message-box');
-        
-            const newTextArea = document.createElement('textarea');
-            newTextArea.classList.add('frm-textarea');
-            newTextArea.value = text;
-            newTextArea.readOnly = true;  // Disable text area editing after submission
-        
-            // Jika ini adalah response, posisikan di sebelah kanan
-            if (isResponse) {
-                newTextArea.classList.add('response-area');
-            }
-        
-            messageBox.appendChild(newTextArea);
-            messageContainer.appendChild(messageBox);
-        }
-        
-        // Fungsi untuk memutar audio
-        function playAudio(audioUrl) {
-            const audioElement = document.createElement('audio');
-            audioElement.src = audioUrl;
-            audioElement.controls = true;
-            audioElement.autoplay = true; // Play audio automatically when added to the DOM
-        
-            // Tambahkan elemen audio ke dalam container
-            const audioContainer = document.createElement('div');
-            audioContainer.classList.add('audio-container');
-            audioContainer.appendChild(audioElement);
-            messageContainer.appendChild(audioContainer);
-        }
-        
-        // Fungsi untuk mengirim pesan ke API chatbot
-        function sendToChatbot(event) {
-            event.preventDefault(); // Mencegah pengiriman form default
-        
-            // Ambil textarea dan tombol kirim
-            const buttonClicked = event.currentTarget;
-            const textarea = buttonClicked.previousElementSibling; // Ambil textarea sebelum tombol
-            const userMessage = textarea.value.trim();
-        
-            // Cek jika textarea kosong
-            if (!userMessage) return;
-        
-            // Tampilkan pesan user
-            createTextArea(userMessage);
-        
-            // Kirim pesan ke API chatbot
-            fetch(apiEndpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ message: userMessage })
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("Chatbot response:", data);  // Log response chatbot
-
-                // Tampilkan response chatbot
-                createTextArea(data.response, true);
-        
-                // Putar audio jika ada
-                if (data.audio_url) {
-                    const audioUrl = `http://localhost:5000/${data.audio_url}`;
-                    playAudio(audioUrl);
+                } else {
+                    console.error('Encrypted ID not found on clicked element.');
                 }
-        
-                // Buat textarea kosong untuk pesan selanjutnya
-                const newMessageBox = document.createElement('div');
-                newMessageBox.classList.add('message-box');
-            })
-            .catch(error => console.error('Error:', error));
-        }
-        
-        // Event listener untuk tombol "Kirim"
-        document.getElementById('send-btn').addEventListener('click', sendToChatbot);
-    });
-</script>
+            }
+        });
+    </script>
+@endsection
