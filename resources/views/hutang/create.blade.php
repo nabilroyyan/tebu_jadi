@@ -1,7 +1,6 @@
 @extends('layout.mainLayout')
 
 @section('content')
-    @if (Auth::user()->can('hutang.create'))
         <div class="container">
             <h1>Tambah Hutang</h1>
 
@@ -56,5 +55,4 @@
                     document.getElementById('nama_petani').value = petani;
                 }
             </script>
-    @endif
 @endsection
