@@ -10,7 +10,7 @@ class HalamanRelatedSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('halaman_relateds')->insert([
+        DB::table('halaman_related')->insert([
             'namaPabrik' => 'PT PABRIK GULA CANDI BARU',
             'judulLaman' => 'PERHITUNGAN HASIL (PH)',
             'namaLokasi' => 'SIDOARJO',
