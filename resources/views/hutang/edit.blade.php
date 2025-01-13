@@ -121,9 +121,12 @@
             .then(response => response.json())
             .then(data => {
                 alert('Status berhasil diupdate');
+                location.reload();
                 document.getElementById(`status-${currentHutangId}`).innerText = status;
                 const modal = bootstrap.Modal.getInstance(document.getElementById('statusModal'));
+               
                 modal.hide();
+                location.reload();
             })
             .catch(error => console.error('Error:', error));
     }
