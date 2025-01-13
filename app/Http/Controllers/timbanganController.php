@@ -100,6 +100,11 @@ public function apiGetAllTimbangan()
         'brix' => 'nullable|string|max:255',
     ]);
 
+     // Hitung neto (backup logika untuk memastikan konsistensi di backend)
+     $bruto = $request->input('bruto');
+     $tara = $request->input('tara');
+     $neto = $bruto - $tara;
+
     // Ambil data timbangan berdasarkan ID
     $timbangan = Tb_Timbangan::findOrFail($id);
 

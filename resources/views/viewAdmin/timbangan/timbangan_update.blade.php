@@ -103,11 +103,12 @@
                     </div>
                 </div>
 
+                <!-- Input Bruto -->
                 <div class="col-lg-6">
                     <div class="form-group mb-4">
                         <label class="label">Bruto</label>
                         <div class="form-group position-relative">
-                            <input type="text" name="bruto" class="form-control text-dark ps-5 h-58"
+                            <input type="number" name="bruto" id="bruto" class="form-control text-dark ps-5 h-58"
                                 placeholder="Enter Bruto" value="{{ $timbangan->bruto }}">
                             <i
                                 class="ri-bubble-chart-fill position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
@@ -115,11 +116,12 @@
                     </div>
                 </div>
 
+                <!-- Input Tara -->
                 <div class="col-lg-6">
                     <div class="form-group mb-4">
                         <label class="label">Tara</label>
                         <div class="form-group position-relative">
-                            <input type="text" name="tara" class="form-control text-dark ps-5 h-58"
+                            <input type="number" name="tara" id="tara" class="form-control text-dark ps-5 h-58"
                                 placeholder="Enter Tara" value="{{ $timbangan->tara }}">
                             <i
                                 class="ri-stack-fill position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
@@ -127,98 +129,62 @@
                     </div>
                 </div>
 
+                <!-- Input Neto -->
                 <div class="col-lg-6">
                     <div class="form-group mb-4">
                         <label class="label">Neto</label>
                         <div class="form-group position-relative">
-                            <input type="text" name="neto" class="form-control text-dark ps-5 h-58"
-                                placeholder="Enter Neto" value="{{ $timbangan->neto }}">
+                            <input type="number" name="neto" id="neto" class="form-control text-dark ps-5 h-58"
+                                placeholder="Enter Neto" value="{{ $timbangan->neto }}" readonly>
                             <i
                                 class="ri-drop-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
                         </div>
                     </div>
                 </div>
 
+                <!-- Form lainnya tetap dipertahankan -->
                 <div class="col-lg-6">
                     <div class="form-group mb-4">
-                        <label class="label">Tanggal</label>
+                        <label class="label">Jenis Tebu</label>
                         <div class="form-group position-relative">
-                            <input type="date" name="tgl_masuk_pos" class="form-control text-dark ps-5 h-58"
-                                value="{{ $timbangan->tgl_masuk_pos ?? now()->format('Y-m-d') }}">
+                            <input type="text" name="jenis_tebu" class="form-control text-dark ps-5 h-58"
+                                placeholder="Enter Jenis Tebu" value="{{ $timbangan->jenis_tebu }}">
                             <i
-                                class="ri-calendar-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                                class="ri-leaf-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
                         </div>
                     </div>
                 </div>
-           
-
-            <div class="col-lg-6">
-                <div class="form-group mb-4">
-                    <label class="label">Tanggal Timbang Masuk</label>
-                    <div class="form-group position-relative">
-                        <input type="datetime-local" name="tgl_timb_masuk" class="form-control text-dark ps-5 h-58"
-                            value="{{ $timbangan->tgl_timb_masuk ?? now()->format('Y-m-d\TH:i') }}">
-                        <i
-                            class="ri-calendar-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                    </div>
-                </div>
             </div>
-
-            <div class="col-lg-6">
-                <div class="form-group mb-4">
-                    <label class="label">Tanggal Timbang Keluar</label>
-                    <div class="form-group position-relative">
-                        <input type="datetime-local" name="tgl_timb_keluar" class="form-control text-dark ps-5 h-58"
-                            value="{{ $timbangan->tgl_timb_keluar ?? now()->format('Y-m-d\TH:i') }}">
-                        <i
-                            class="ri-calendar-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-lg-6">
-                <div class="form-group mb-4">
-                    <label class="label">Jenis Tebu</label>
-                    <div class="form-group position-relative">
-                        <input type="text" name="jenis_tebu" class="form-control text-dark ps-5 h-58"
-                            placeholder="Enter Jenis Tebu" value="{{ $timbangan->jenis_tebu }}">
-                        <i
-                            class="ri-leaf-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="form-group mb-4">
-                    <label class="label">Brix (%)</label>
-                    <div class="form-group position-relative">
-                        <input type="text" name="brix" class="form-control text-dark ps-5 h-58"
-                            placeholder="Enter Brix" value="{{ $timbangan->brix }}">
-                        <i
-                            class="ri-line-chart-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
 
             <button type="button" class="btn btn-secondary fw-semibold text-white py-3 px-4 mt-2 w-30"
                 onclick="window.location.href='/timbangan'">Back</button>
             <button type="submit" class="btn btn-primary fw-semibold text-white py-3 px-4 mt-2 w-30">Save</button>
             </div>
-
         </form>
 
+        <!-- JavaScript untuk perhitungan Neto -->
         <script>
-            document.querySelector('form').addEventListener('submit', function(e) {
-                const tanggalInput = document.querySelector('input[name="tanggal"]');
-                if (!tanggalInput.value) {
-                    const now = new Date();
-                    const formattedDate = now.toISOString().split('T')[0]; // Format menjadi YYYY-MM-DD
-                    tanggalInput.value = formattedDate;
+            // Ambil elemen input bruto, tara, dan neto
+            const brutoInput = document.getElementById('bruto');
+            const taraInput = document.getElementById('tara');
+            const netoInput = document.getElementById('neto');
 
-                }
-            });
+            // Fungsi untuk menghitung netto otomatis
+            function calculateNetto() {
+                const bruto = parseFloat(brutoInput.value) || 0; // Nilai default 0 jika kosong
+                const tara = parseFloat(taraInput.value) || 0; // Nilai default 0 jika kosong
+                const netto = bruto - tara;
+
+                // Masukkan hasil netto ke input neto
+                netoInput.value = netto >= 0 ? netto : 0; // Pastikan netto tidak negatif
+            }
+
+            // Tambahkan event listener untuk input bruto dan tara
+            brutoInput.addEventListener('input', calculateNetto);
+            taraInput.addEventListener('input', calculateNetto);
+
+            // Hitung netto saat halaman pertama kali dimuat
+            calculateNetto();
         </script>
     @endif
 @endsection

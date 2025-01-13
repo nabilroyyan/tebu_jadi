@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Log;
 
 use App\Models\Kebun;
@@ -27,8 +28,9 @@ class KebunController extends Controller
             'nama_kebun' => $request->nama_kebun,
             'alamat' => $request->alamat,
             'luas' => $request->luas,
-            'kecamatan' => $request->kecamatan,
-            'kabupaten' => $request->kabupaten,
+            'provinsi' => $request->provinsi_nama, // Menggunakan nama provinsi
+            'kabupaten' => $request->kabupaten_nama, // Menggunakan nama kabupaten
+            'kecamatan' => $request->kecamatan_nama, // Menggunakan nama kecamatan
             'nama_petani' => $request->nama_petani,
             'status' => "aktif",
         ];
@@ -53,8 +55,9 @@ class KebunController extends Controller
             "nama_kebun" => $request->nama_kebun,
             "alamat" => $request->alamat,
             "luas" => $request->luas,
-            "kecamatan" => $request->kecamatan,
-            "kabupaten" => $request->kabupaten,
+           'provinsi' => $request->provinsi_nama, 
+            'kabupaten' => $request->kabupaten_nama,
+            'kecamatan' => $request->kecamatan_nama,
             "nama_petani" => $request->nama_petani,
             "status" => $request->status,
         ];
@@ -69,11 +72,10 @@ class KebunController extends Controller
     }
 
     public function destroy($id)
-{
-    $kebun = Kebun::findOrFail($id);
-    $kebun->delete();
+    {
+        $kebun = Kebun::findOrFail($id);
+        $kebun->delete();
 
-    return redirect('/kebun')->with('success', 'Data kebun berhasil dihapus!');
-}
-
+        return redirect('/kebun')->with('success', 'Data kebun berhasil dihapus!');
+    }
 }
