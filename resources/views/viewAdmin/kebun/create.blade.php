@@ -3,6 +3,9 @@
 
 
 @section('content')
+<div class="">
+<h3>Create Data Kebun</h3>
+</div>
     <form action="/kebun-store" method="POST">
         @csrf
         <div class="row">

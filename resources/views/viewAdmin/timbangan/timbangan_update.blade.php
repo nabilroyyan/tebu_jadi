@@ -1,6 +1,9 @@
 @extends('layout.mainLayout')
 
 @section('content')
+<div class="">
+    <h3>Edit Data Timbangan</h3>
+    </div>
     @if (Auth::user()->can('timbangan.edit'))
         <form action="/timbangan/{{ $timbangan->id_timbangan }}/update" method="POST">
             @csrf
@@ -158,7 +161,7 @@
 
             <div class="col-lg-6">
                 <div class="form-group mb-4">
-                    <label class="label">Tanggal Timbang pos</label>
+                    <label class="label">Tanggal Timbang masuk</label>
                     <div class="form-group position-relative">
                         <input type="datetime-local" name="tgl_timb_masuk" class="form-control text-dark ps-5 h-58"
                             value="{{ $timbangan->tgl_timb_masuk ?? now()->format('Y-m-d\TH:i') }}">
@@ -170,7 +173,7 @@
 
             <div class="col-lg-6">
                 <div class="form-group mb-4">
-                    <label class="label">Tanggal Timbang pos</label>
+                    <label class="label">Tanggal Timbang keluar</label>
                     <div class="form-group position-relative">
                         <input type="datetime-local" name="tgl_timb_masuk" class="form-control text-dark ps-5 h-58"
                             value="{{ $timbangan->tgl_timb_keluar ?? now()->format('Y-m-d\TH:i') }}">

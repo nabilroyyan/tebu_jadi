@@ -2,6 +2,9 @@
 
 @section('content')
     @if (Auth::user()->can('timbangan.create'))
+    <div class="">
+        <h3>Create Data Timbangan</h3>
+        </div>
         <form action="/timbangan-store" method="POST">
             @csrf
             <div class="row">

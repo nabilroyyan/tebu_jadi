@@ -1,6 +1,9 @@
 @extends('layout.mainLayout')
 
 @section('content')
+<div class="">
+    <h3>Edit Data Kebun</h3>
+    </div>
     <form action="/kebun/{{ $kebun->id_master_kebun }}/update" method="POST">
         @csrf
         <div class="row">
