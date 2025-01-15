@@ -27,8 +27,7 @@ class TimbanganController extends Controller
     // Simpan data baru ke database
     public function store(Request $request)
     {
-        
-        $randomNoSpa = mt_rand(10000000, 99999999); 
+        $randomNoSpa = mt_rand(10000000, 99999999);
         $validated = [
             'no_spa' => $randomNoSpa,
             'tanggal' => $request->tanggal,
@@ -84,7 +83,6 @@ public function apiGetAllTimbangan()
     Log::info('Debug data:', $request->all());
 
     $validated = $request->validate([
-        
         'no_spa' => 'nullable|string|max:255',
         'tanggal' => 'nullable|date',
         'nopol' => 'nullable|string',

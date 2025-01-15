@@ -9,6 +9,10 @@ use App\Http\Controllers\Controller;
 
 class TbHutangController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:hutang.list', ['only' => ['index', 'apiIndex']]);
+    }
     // Fungsi untuk menampilkan semua hutang
     public function index()
     {
@@ -39,7 +43,7 @@ class TbHutangController extends Controller
     // Fungsi untuk menyimpan hutang baru
     public function store(Request $request)
     {
-        $request->validate([
+        $request->validate(
             'nokontrak' => 'required',
             'pinjaman' => 'required|numeric',
             'angsuran_sisa' => 'required|numeric',
@@ -70,7 +74,7 @@ class TbHutangController extends Controller
 
     // Update the status field
     $hutang->status = $validated['status'];
-    
+
     // Save the updated hutang to the database
     $hutang->save();
 

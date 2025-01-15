@@ -19,7 +19,7 @@
     </div>
 
     <!-- Permission Form -->
-    <form action="{{ route('user.assignPermission', $user->id) }}" method="POST">
+    <form action="{{ route('user.assignPermission', ['userId' => $user->id]) }}" method="POST">
         @csrf
         <div class="d-flex justify-content-between mb-3">
             <button type="button" id="select-all" class="btn btn-primary fw-semibold text-white py-2 px-4 mt-2 me-2">Select All</button>

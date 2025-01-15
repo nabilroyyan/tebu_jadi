@@ -23,39 +23,68 @@ Route::middleware('auth')->group(function() {
 Route::get('/dashboard', function() {
     return view('viewAdmin.dashboard');
 });
-route::get('/kebun', [KebunController::class, 'index']);
-
-route::view('/kebun-create', 'viewAdmin.kebun.create');
-// Route::post('/kebun-store', [KebunController::class, 'store']);
-Route::post('/kebun-store', [KebunController::class, 'store']);
-Route::get('/kebun/{id}/edit', [KebunController::class, 'edit']);
-Route::post('/kebun/{id}/update', [KebunController::class, 'update']);
-Route::get('/kebun/{id}/delete', [KebunController::class, 'delete']);
+Route::group(['middleware' => ['can:kebun.list']], function() {
+    route::get('/kebun', [KebunController::class, 'index']);
+});
+Route::group(['middleware' => ['can:kebun.show']], function() {
+    Route::get('/kebun-details/{id}', [TimbanganController::class, 'getKebunDetails']);
+});
+Route::group(['middleware' => ['can:kebun.create']], function() {
+    route::view('/kebun-create', 'viewAdmin.kebun.create');
+    Route::post('/kebun-store', [KebunController::class, 'store']);
+});
+Route::group(['middleware' => ['can:kebun.edit']], function() {
+    Route::get('/kebun/{id}/edit', [KebunController::class, 'edit']);
+    Route::post('/kebun/{id}/update', [KebunController::class, 'update']);
+});
+Route::group(['middleware' => ['can:kebun.delete']], function() {
+    Route::get('/kebun/{id}/delete', [KebunController::class, 'destroy']);
+});
 
 
 Route::resource('hutangs', TbHutangController::class);
 Route::resource('transaksis', TbTransaksiController::class);
-Route::get('api/hutangs', [TbHutangController::class, 'apiIndex']);
-Route::put('api/hutangs/{id}', [TbHutangController::class, 'update']);
-Route::get('api/transaksis', [TbTransaksiController::class, 'apiIndex']);
-Route::put('api/transaksis/{id}', [TbTransaksiController::class, 'updateStatus']);
-Route::get('transaksis/{id}', [TbTransaksiController::class, 'show']);
-Route::get('/kebun/{id}/delete', [KebunController::class, 'destroy']);
+
+Route::group(['middleware' => ['can:hutang.list']], function() {
+    Route::get('api/hutangs', [TbHutangController::class, 'apiIndex']);
+});
+Route::group(['middleware' => ['can:hutang.show']], function() {
+    Route::put('api/hutangs/{id}', [TbHutangController::class, 'update']);
+});
+Route::group(['middleware' => ['can:transaksi.list']], function() {
+    Route::get('api/transaksis', [TbTransaksiController::class, 'apiIndex']);
+});
+Route::group(['middleware' => ['can:transaksi.update']], function() {
+    Route::put('api/transaksis/{id}', [TbTransaksiController::class, 'updateStatus']);
+});
+Route::group(['middleware' => ['can:transaksi.show']], function() {
+    Route::get('transaksis/{id}', [TbTransaksiController::class, 'show']);
+});
 
 Route::get('/data-report', [DocumentController::class, 'showReport']);
 Route::get('/api/report-data/{id}', [DocumentController::class, 'getReportData']);
 Route::get('/data-masuk', [DocumentController::class, 'showDataMasuk']);
 Route::get('/api/data-masuk', [DocumentController::class, 'getDataMasuk']);
 
-Route::get('/timbangan', [TimbanganController::class, 'index'])->name('timbangan.index');
-Route::get('/timbangan-create', [TimbanganController::class, 'create'])->name('timbangan.create');
-Route::post('/timbangan-store', [TimbanganController::class, 'store'])->name('timbangan.store');
-Route::get('/kebun-details/{id}', [TimbanganController::class, 'getKebunDetails']);
-Route::get('/timbangan/{id}/edit', [TimbanganController::class, 'edit'])->name('timbangan.edit');
-Route::post('/timbangan/{id}/update', [TimbanganController::class, 'update'])->name('timbangan.update');
-Route::get('/timbangan/{id}/delete', [TimbanganController::class, 'destroy'])->name('timbangan.destroy');
-Route::get('/api/timbangan', [TimbanganController::class, 'apiGetAllTimbangan']);
+Route::group(['middleware' => ['can:timbangan.list']], function() {
+    Route::get('/timbangan', [TimbanganController::class, 'index'])->name('timbangan.index');
+});
+Route::group(['middleware' => ['can:timbangan.create']], function() {
+    Route::get('/timbangan-create', [TimbanganController::class, 'create'])->name('timbangan.create');
+    Route::post('/timbangan-store', [TimbanganController::class, 'store'])->name('timbangan.store');
+});
+Route::group(['middleware' => ['can:timbangan.list']], function() {
+    Route::get('/api/timbangan', [TimbanganController::class, 'apiGetAllTimbangan']);
+});
+Route::group(['middleware' => ['can:timbangan.edit']], function() {
+    Route::get('/timbangan/{id}/edit', [TimbanganController::class, 'edit'])->name('timbangan.edit');
+    Route::post('/timbangan/{id}/update', [TimbanganController::class, 'update'])->name('timbangan.update');
+});
+Route::group(['middleware' => ['can:timbangan.delete']], function() {
+    Route::get('/timbangan/{id}/delete', [TimbanganController::class, 'destroy'])->name('timbangan.destroy');
+});
 
+Route::group(['middleware' => ['can:role.management']], function() {
 Route::controller(UserController::class)->prefix('/user')->group(function() {
     Route::get('/','index')->name('user.index');
     Route::get('/create','create')->name('user.create');
@@ -81,6 +110,7 @@ Route::controller(RolePermissionController::class)->prefix('/role')->group(funct
 Route::controller(RolePermissionController::class)->prefix('/permission')->group(function() {
     Route::get('/', 'getPermission')->name('permission.getPermission');
     Route::post('/permissions', 'storePermission')->name('permission.store');
+});
 });
 
 });
