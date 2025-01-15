@@ -72,9 +72,9 @@ class DocumentController extends Controller
 
     // Ambil data hutang berdasarkan nokontrak dari kebun
     $dataHutang = TbHutang::where('nokontrak', $kebun->nomer_kontrak)->get();
-    if ($dataHutang->isEmpty()) {
-        return response()->json(['error' => 'Data Hutang not found'], 404);
-    }
+
+    // Jika data hutang kosong, set nilai totalSisa ke 0
+    $totalSisa = $dataHutang->isEmpty() ? 0 : $dataHutang->sum('sisa');
 
     $konstata = Konstanta::find(1);
     
@@ -84,7 +84,6 @@ class DocumentController extends Controller
         $body4s = Bodys4::all();
         $anggotas = Anggota::all();
         $halamanRelated = HalamanRelated::find(1);
-        $totalSisa = $dataHutang->sum('sisa');
     
         return response()->json([
             'totalSisa' => $totalSisa,
