@@ -80,7 +80,7 @@ public function apiGetAllTimbangan()
 
     public function update(Request $request, $id)
 {
-    Log::info('Debug data:', $request->all());
+  
 
     $validated = $request->validate([
         'no_spa' => 'nullable|string|max:255',
@@ -94,9 +94,15 @@ public function apiGetAllTimbangan()
         'tgl_masuk_pos' => 'nullable|date',
         'tgl_timb_masuk' => 'nullable|date',
         'tgl_timb_keluar' => 'nullable|date',
-        'jenis_tebu' => 'nullable|string|max:255',
+        'jenis_tebu' => 'nullable|in:lokal, non lokal',
         'brix' => 'nullable|string|max:255',
     ]);
+
+
+     // Hitung neto (backup logika untuk memastikan konsistensi di backend)
+     $bruto = $request->input('bruto');
+     $tara = $request->input('tara');
+     $neto = $bruto - $tara;
 
     // Ambil data timbangan berdasarkan ID
     $timbangan = Tb_Timbangan::findOrFail($id);

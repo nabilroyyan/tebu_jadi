@@ -19,6 +19,7 @@ class CreateDbMasterKebunTable extends Migration
             $table->string('nama_kebun', 100);
             $table->string('alamat', 255);
             $table->string('luas');
+            $table->string('provinsi', 100);
             $table->string('kecamatan', 100);
             $table->string('kabupaten', 100);
             $table->string('nama_petani', 100);

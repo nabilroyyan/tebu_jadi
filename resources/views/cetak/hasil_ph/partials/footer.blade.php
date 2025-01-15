@@ -38,7 +38,7 @@
 
                 $('#header3').text(halamanRelated.header3 || '');
 
-                var createdAt = new Date(dataMasuk.tgl_timb_msk);
+                var createdAt = new Date(dataMasuk.tanggal);
             var formattedDate = createdAt.toLocaleDateString('id-ID', {
                 day: 'numeric',
                 month: 'short',

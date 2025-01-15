@@ -2,6 +2,9 @@
 
 @section('content')
     @if (Auth::user()->can('timbangan.create'))
+    <div class="">
+        <h3>Create Data Timbangan</h3>
+        </div>
         <form action="/timbangan-store" method="POST">
             @csrf
             <div class="row">
@@ -98,16 +101,20 @@
 
 
                 <div class="col-lg-6">
-                    <div class="form-group mb-4">
-                        <label class="label">Jenis Tebu</label>
-                        <div class="form-group position-relative">
-                            <input type="text" name="jenis_tebu" class="form-control text-dark ps-5 h-58"
-                                placeholder="Masukkan Jenis Tebu">
-                            <i
-                                class="ri-leaf-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                        </div>
+                <div class="form-group mb-4">
+                    <label class="label">jenis tebu</label>
+                    <div class="form-group position-relative">
+                        <select name="jenis_tebu" class="form-select form-control text-dark ps-5 h-58">
+                            <option value="" selected disabled>Pilih Status</option>
+                            <option value="proses">lokal</option>
+                            <option value="non lokal">non lokal</option>
+                        </select>
+                        <i
+                            class="ri-checkbox-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
                     </div>
                 </div>
+            </div>
+
 
                 <div class="col-lg-6">
                     <div class="form-group mb-4">

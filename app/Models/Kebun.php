@@ -18,6 +18,7 @@ class Kebun extends Model
         'nama_kebun',
         'alamat',
         'luas',
+        'provinsi',
         'kecamatan',
         'kabupaten',
         'nama_petani',

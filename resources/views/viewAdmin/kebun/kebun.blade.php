@@ -25,16 +25,17 @@
                             <table class="table align-middle" id="myTable">
                                 <thead>
                                     <tr>
-                                        <th scope="col">no</th>
-                                        <th scope="col">nomer kontrak</th>
-                                        <th scope="col">nama kebun</th>
-                                        <th scope="col">alamat</th>
-                                        <th scope="col">luas</th>
-                                        <th scope="col">kecamatan</th>
-                                        <th scope="col">kabupaten</th>
-                                        <th scope="col">nama petani</th>
-                                        <th scope="col">status</th>
-                                        <th scope="col">action</th>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Nomer Kontrak</th>
+                                        <th scope="col">Nama Kebun</th>
+                                        <th scope="col">Alamat</th>
+                                        <th scope="col">Luas</th>
+                                        <th scope="col">Provinsi</th>
+                                        <th scope="col">Kecamatan</th>
+                                        <th scope="col">Kabupaten</th>
+                                        <th scope="col">Nama Petani</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -61,6 +62,11 @@
                                             <td>
                                                 <a>
                                                     {{ $item->luas }}
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a>
+                                                    {{ $item->provinsi }}
                                                 </a>
                                             </td>
                                             <td>

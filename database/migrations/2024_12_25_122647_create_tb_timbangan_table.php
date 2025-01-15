@@ -31,7 +31,7 @@ return new class extends Migration
             $table->date('tgl_masuk_pos')->nullable();
             $table->datetime('tgl_timb_masuk')->nullable();
             $table->datetime('tgl_timb_keluar')->nullable();
-            $table->string('jenis_tebu');
+            $table->enum('jenis_tebu',['lokal','non lokal']);
             $table->string('brix');
             $table->timestamps();
         });

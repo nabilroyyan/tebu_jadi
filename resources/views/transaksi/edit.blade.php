@@ -130,8 +130,10 @@
                     // Update the status in the table
                     row.querySelector('.status').innerText = 'Diverifikasi';
                     alert('Transaksi berhasil diverifikasi');
+                    location.reload();
                 } else {
                     alert('Transaksi berhasil diverifikasi. ID transaksi: ' + id);
+                    location.reload();
                 }
             } else {
                 alert('Terjadi kesalahan saat memverifikasi transaksi');
