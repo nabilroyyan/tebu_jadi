@@ -93,7 +93,8 @@
                                 <option value="proses" {{ $timbangan->status_timbang == 'proses' ? 'selected' : '' }}>
                                     Proses
                                 </option>
-                                <option value="selesai ditimbang" {{ $timbangan->status_timbang == 'selesai ditimbang' ? 'selected' : '' }}>
+                                <option value="selesai ditimbang"
+                                    {{ $timbangan->status_timbang == 'selesai ditimbang' ? 'selected' : '' }}>
                                     Selesai
                                 </option>
                             </select>
@@ -141,29 +142,56 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Form lainnya tetap dipertahankan -->
                 <div class="col-lg-6">
                     <div class="form-group mb-4">
-                        <label class="label">Jenis Tebu</label>
+                        <label class="label">Tanggal Timbang pos</label>
                         <div class="form-group position-relative">
-                            <input type="text" name="jenis_tebu" class="form-control text-dark ps-5 h-58"
-                                placeholder="Enter Jenis Tebu" value="{{ $timbangan->jenis_tebu }}">
+                            <input type="datetime-local" name="tgl_timb_masuk" class="form-control text-dark ps-5 h-58"
+                                value="{{ $timbangan->tgl_masuk_pos ?? now()->format('Y-m-d\TH:i') }}">
                             <i
-                                class="ri-leaf-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                                class="ri-calendar-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
                         </div>
+                    </div>
+                </div>
+    
+          
+
+            <div class="col-lg-6">
+                <div class="form-group mb-4">
+                    <label class="label">Tanggal Timbang pos</label>
+                    <div class="form-group position-relative">
+                        <input type="datetime-local" name="tgl_timb_masuk" class="form-control text-dark ps-5 h-58"
+                            value="{{ $timbangan->tgl_timb_masuk ?? now()->format('Y-m-d\TH:i') }}">
+                        <i
+                            class="ri-calendar-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
                     </div>
                 </div>
             </div>
 
-            <button type="button" class="btn btn-secondary fw-semibold text-white py-3 px-4 mt-2 w-30"
-                onclick="window.location.href='/timbangan'">Back</button>
-            <button type="submit" class="btn btn-primary fw-semibold text-white py-3 px-4 mt-2 w-30">Save</button>
+            <div class="col-lg-6">
+                <div class="form-group mb-4">
+                    <label class="label">Tanggal Timbang pos</label>
+                    <div class="form-group position-relative">
+                        <input type="datetime-local" name="tgl_timb_masuk" class="form-control text-dark ps-5 h-58"
+                            value="{{ $timbangan->tgl_timb_keluar ?? now()->format('Y-m-d\TH:i') }}">
+                        <i
+                            class="ri-calendar-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                    </div>
+                </div>
             </div>
+
+            </div>      
+                <button type="button" class="btn btn-secondary fw-semibold text-white py-3 px-4 mt-2 w-30"
+                    onclick="window.location.href='/timbangan'">Back</button>
+                <button type="submit" class="btn btn-primary fw-semibold text-white py-3 px-4 mt-2 w-30">Save</button>
+
         </form>
+
+
 
         <!-- JavaScript untuk perhitungan Neto -->
         <script>
+            
             // Ambil elemen input bruto, tara, dan neto
             const brutoInput = document.getElementById('bruto');
             const taraInput = document.getElementById('tara');

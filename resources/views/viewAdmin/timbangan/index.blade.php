@@ -25,18 +25,17 @@
                                 <table class="table align-middle" id="myTable">
                                     <thead>
                                         <tr>
-                                            <th scope="col">no</th>
-                                            <th scope="col">no SPA</th>
-                                            <th scope="col">tanggal</th>
-                                            {{-- <th scope="col">nomer kontrak</th> --}}
-                                            <th scope="col">nama kebun</th>
-                                            <th scope="col">nama petani</th>
-                                            <th scope="col">nopol</th>
-                                            <th scope="col">sopir</th>
-                                            <th scope="col">status_timbang</th>
-                                            <th scope="col">bruto</th>
-                                            <th scope="col">tara</th>
-                                            <th scope="col">neto</th>
+                                            <th scope="col">No</th>
+                                            <th scope="col">No SPA</th>
+                                            <th scope="col">Tanggal</th>
+                                            <th scope="col">Nomer Kontrak</th>
+                                            <th scope="col">Nama Kebun</th>
+                                            <th scope="col">Nopol</th>
+                                            <th scope="col">Sopir</th>
+                                            <th scope="col">Status Timbang</th>
+                                            <th scope="col">Bruto</th>
+                                            <th scope="col">Tara</th>
+                                            <th scope="col">Neto</th>
                                             <th scope="col">tanggal masuk pos</th>
                                             <th scope="col">tanggal timbang pos</th>
                                             <th scope="col">tanggal timbang keluar</th>
@@ -59,12 +58,6 @@
                                                         {{ $item->tanggal }}
                                                     </a>
                                                 </td>
-
-                                                {{-- <td>
-                                            <a>
-                                                {{ $item->master_kebun_id }}
-                                            </a>
-                                        </td> --}}
 
                                                 <td>
                                                     <a>
@@ -144,7 +137,7 @@
                                                                     <a class="dropdown-item"
                                                                         href="/timbangan/{{ $item->id_timbangan }}/edit">
                                                                         <i data-feather="edit-3"></i>
-                                                                        Rename
+                                                                        Update
                                                                     </a>
                                                                 </li>
                                                             @endif
