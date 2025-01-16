@@ -91,9 +91,6 @@ public function apiGetAllTimbangan()
         'bruto' => 'nullable|numeric',
         'tara' => 'nullable|numeric',
         'neto' => 'nullable|numeric',
-        'tgl_masuk_pos' => 'nullable|date',
-        'tgl_timb_masuk' => 'nullable|date',
-        'tgl_timb_keluar' => 'nullable|date',
         'jenis_tebu' => 'nullable|in:lokal, non lokal',
         'brix' => 'nullable|string|max:255',
     ]);

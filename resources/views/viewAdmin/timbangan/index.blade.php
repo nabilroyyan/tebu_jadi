@@ -36,9 +36,6 @@
                                             <th scope="col">Bruto</th>
                                             <th scope="col">Tara</th>
                                             <th scope="col">Neto</th>
-                                            <th scope="col">tanggal masuk pos</th>
-                                            <th scope="col">tanggal timbang pos</th>
-                                            <th scope="col">tanggal timbang keluar</th>
                                             <th scope="col">jenis tebu</th>
                                             <th scope="col">brix</th>
                                             <th scope="col">action</th>
@@ -97,21 +94,6 @@
                                                 <td>
                                                     <a>
                                                         {{ $item->neto }}
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <a>
-                                                        {{ $item->tgl_masuk_pos }}
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <a>
-                                                        {{ $item->tgl_timb_masuk }}
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <a>
-                                                        {{ $item->tgl_timb_keluar }}
                                                     </a>
                                                 </td>
                                                 <td>

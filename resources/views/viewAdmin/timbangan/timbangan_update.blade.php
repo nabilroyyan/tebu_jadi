@@ -145,44 +145,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="form-group mb-4">
-                        <label class="label">Tanggal Timbang pos</label>
-                        <div class="form-group position-relative">
-                            <input type="datetime-local" name="tgl_timb_masuk" class="form-control text-dark ps-5 h-58"
-                                value="{{ $timbangan->tgl_masuk_pos ?? now()->format('Y-m-d\TH:i') }}">
-                            <i
-                                class="ri-calendar-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                        </div>
-                    </div>
-                </div>
-    
-          
-
-            <div class="col-lg-6">
-                <div class="form-group mb-4">
-                    <label class="label">Tanggal Timbang masuk</label>
-                    <div class="form-group position-relative">
-                        <input type="datetime-local" name="tgl_timb_masuk" class="form-control text-dark ps-5 h-58"
-                            value="{{ $timbangan->tgl_timb_masuk ?? now()->format('Y-m-d\TH:i') }}">
-                        <i
-                            class="ri-calendar-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="form-group mb-4">
-                    <label class="label">Tanggal Timbang keluar</label>
-                    <div class="form-group position-relative">
-                        <input type="datetime-local" name="tgl_timb_masuk" class="form-control text-dark ps-5 h-58"
-                            value="{{ $timbangan->tgl_timb_keluar ?? now()->format('Y-m-d\TH:i') }}">
-                        <i
-                            class="ri-calendar-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
-                    </div>
-                </div>
-            </div>
-
             </div>      
                 <button type="button" class="btn btn-secondary fw-semibold text-white py-3 px-4 mt-2 w-30"
                     onclick="window.location.href='/timbangan'">Back</button>

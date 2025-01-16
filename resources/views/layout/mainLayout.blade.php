@@ -29,7 +29,8 @@
 <body>
     <!-- Tambahkan sebelum </body> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flaticon/2.1.1/css/flaticon.css" rel="stylesheet">
     <div class="preloader" id="preloader">
         <div class="preloader">
             <div class="waviy position-relative">

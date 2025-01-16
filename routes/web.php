@@ -8,6 +8,7 @@ use App\Http\Controllers\RolePermissionController;
 use App\http\Controllers\TimbanganController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DocumentController;
+use App\http\Controllers\DashboardController;
 
 Route::view('/', 'homeView/home')->middleware('guest');
 
@@ -20,9 +21,7 @@ Auth::routes();
 Route::middleware('auth')->group(function() {
 
 
-Route::get('/dashboard', function() {
-    return view('viewAdmin.dashboard');
-});
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::group(['middleware' => ['can:kebun.list']], function() {
     route::get('/kebun', [KebunController::class, 'index']);
 });

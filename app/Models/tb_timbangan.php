@@ -22,9 +22,6 @@ class Tb_Timbangan extends Model
         'bruto',
         'tara',
         'neto',
-        'tgl_masuk_pos',
-        'tgl_timb_masuk',
-        'tgl_timb_keluar',
         'jenis_tebu',
         'brix',
     ];

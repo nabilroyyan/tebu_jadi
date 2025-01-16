@@ -28,9 +28,6 @@ return new class extends Migration
             $table->float('bruto', 10, 2)->nullable();
             $table->float('tara', 10, 2)->nullable();
             $table->float('neto', 10, 2)->nullable();
-            $table->date('tgl_masuk_pos')->nullable();
-            $table->datetime('tgl_timb_masuk')->nullable();
-            $table->datetime('tgl_timb_keluar')->nullable();
             $table->enum('jenis_tebu',['lokal','non lokal']);
             $table->string('brix');
             $table->timestamps();
