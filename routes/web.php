@@ -44,9 +44,8 @@ Route::group(['middleware' => ['can:kebun.delete']], function() {
 Route::resource('hutangs', TbHutangController::class);
 Route::resource('transaksis', TbTransaksiController::class);
 
-Route::group(['middleware' => ['can:hutang.list']], function() {
-    Route::get('api/hutangs', [TbHutangController::class, 'apiIndex']);
-});
+Route::get('api/hutangs', [TbHutangController::class, 'apiIndex']);
+
 Route::group(['middleware' => ['can:hutang.show']], function() {
     Route::put('api/hutangs/{id}', [TbHutangController::class, 'update']);
 });
