@@ -5,13 +5,12 @@
     <div class="col-lg-12">
         <div class="card bg-white border-0 rounded-10 mb-4">
             <div class="d-flex align-items-center bg-body justify-content-between">
-                <h5 class="ms-5">Daftar Hutang</h5>            
-                <a href="{{ route('hutangs.create') }}" class="btn btn-primary text-white me-5">Tambah Hutang Baru</a>            
+                <h5 class="ms-5">Daftar Hutang</h5>
+                <a href="{{ route('hutangs.create') }}" class="btn btn-primary text-white me-5">Tambah Hutang Baru</a>
             </div>
         </div>
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="preview-tab-pane" role="tabpanel"
-                aria-labelledby="preview-tab" tabindex="0">
+            <div class="tab-pane fade show active" id="preview-tab-pane" role="tabpanel" aria-labelledby="preview-tab" tabindex="0">
                 <div class="default-table-area members-list">
                     <!-- Custom Search -->
                     <div class="mb-3">
@@ -51,24 +50,23 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    // Custom pagination variables
-    const itemsPerPage = 5;
-    let currentPage = 1;
-    let data = [];
+    const itemsPerPage = 5; // Number of items per page
+    let currentPage = 1; // Current page
+    let data = []; // All data fetched from API
 
-    // Fetch data and render the table
+    // Fetch data from API
     fetch('/api/hutangs')
         .then(response => response.json())
         .then(fetchedData => {
+            console.log('Fetched Data:', fetchedData); // Debugging
             data = fetchedData;
             renderTable(data);
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => console.error('Error fetching data:', error));
 
-    // Group data by 'nokontrak' (grouping logic)
+    // Group data by 'nokontrak'
     function groupData(data) {
         const groupedData = {};
-
         data.forEach(hutang => {
             if (!groupedData[hutang.nokontrak]) {
                 groupedData[hutang.nokontrak] = {
@@ -78,23 +76,18 @@
                     details: []
                 };
             }
-
-            // If status is 'diterima', add to totals
             if (hutang.status === 'diterima') {
                 groupedData[hutang.nokontrak].totalPinjaman += hutang.pinjaman;
                 groupedData[hutang.nokontrak].totalAngsuranSisa += hutang.sisa;
             }
-
-            // Add the hutang to the details (including 'diproses' ones)
             groupedData[hutang.nokontrak].details.push(hutang);
         });
-
         return groupedData;
     }
 
-    // Render the table based on the current page
+    // Render table with pagination
     function renderTable(filteredData) {
-        const groupedData = groupData(filteredData); // Group the data
+        const groupedData = groupData(filteredData);
         const hutangTableBody = document.getElementById('hutang-table-body');
         const startIndex = (currentPage - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
@@ -122,23 +115,17 @@
                                         <th>Sisa</th>
                                         <th>Status</th>
                                         <th>Tanggal</th>
-                                        <th>Transaksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     ${group.details.map((detail, index) => `
-                                        <tr onclick="toggleTransactionDetails(${detail.id}, '${group.nokontrak}')">
+                                        <tr>
                                             <td>${index + 1}</td>
                                             <td>${detail.pinjaman}</td>
                                             <td>${detail.angsuran_sisa}</td>
                                             <td>${detail.sisa}</td>
                                             <td>${detail.status}</td>
-                                            <td>${new Date(detail.created_at).toLocaleDateString('id-ID', {
-                                                year: 'numeric',
-                                                month: 'long',
-                                                day: 'numeric'
-                                            })}</td>
-                                            <td>Detail Transaksi</td>
+                                            <td>${new Date(detail.created_at).toLocaleDateString('id-ID')}</td>
                                         </tr>
                                     `).join('')}
                                 </tbody>
@@ -151,77 +138,39 @@
 
         hutangTableBody.innerHTML = html;
 
-        // Update pagination display
-        document.getElementById('pageNumber').textContent = Page ${currentPage};
+        // Update pagination controls
+        document.getElementById('pageNumber').textContent = `Page ${currentPage}`;
         document.getElementById('prevPage').disabled = currentPage === 1;
         document.getElementById('nextPage').disabled = currentPage * itemsPerPage >= Object.keys(groupedData).length;
     }
 
-    // Handle search input
-    document.getElementById('searchInput').addEventListener('input', function() {
+    // Handle search
+    document.getElementById('searchInput').addEventListener('input', function () {
         const searchTerm = this.value.toLowerCase();
         const filteredData = data.filter(hutang => hutang.nokontrak.toLowerCase().includes(searchTerm));
-        currentPage = 1;  // Reset to first page on search
+        currentPage = 1;
         renderTable(filteredData);
     });
 
-    // Handle previous page click
-    document.getElementById('prevPage').addEventListener('click', function() {
+    // Pagination controls
+    document.getElementById('prevPage').addEventListener('click', function () {
         if (currentPage > 1) {
             currentPage--;
             renderTable(data);
         }
     });
 
-    // Handle next page click
-    document.getElementById('nextPage').addEventListener('click', function() {
+    document.getElementById('nextPage').addEventListener('click', function () {
         if (currentPage * itemsPerPage < data.length) {
             currentPage++;
             renderTable(data);
         }
     });
 
-    // Toggle details visibility for the grouped rows
+    // Toggle row details
     function toggleDetails(nokontrak) {
-        const detailsRow = document.getElementById(details-${nokontrak});
+        const detailsRow = document.getElementById(`details-${nokontrak}`);
         detailsRow.style.display = detailsRow.style.display === 'none' ? '' : 'none';
-    }
-
-    // Toggle visibility of the transaction details row
-    function toggleTransactionDetails(detailId, nokontrak) {
-        const transactionDetailsRow = document.getElementById(transaction-details-${detailId});
-        const transactionTableBody = document.getElementById(transaction-table-${detailId});
-
-        if (transactionDetailsRow.style.display === 'none') {
-            transactionDetailsRow.style.display = '';
-            fetch(/api/transaksis)
-                .then(response => response.json())
-                .then(transactions => {
-                    const filteredTransactions = transactions.filter(transaction => 
-                        transaction.recid === detailId
-                    );
-
-                    let transactionHtml = '';
-                    filteredTransactions.forEach((transaction, index) => {
-                        transactionHtml += `
-                            <tr>
-                                <td>${index + 1}</td>
-                                <td>${transaction.angsuran}</td>
-                                <td>${transaction.status}</td>
-                                <td>${new Date(transaction.created_at).toLocaleDateString('id-ID', {
-                                    year: 'numeric',
-                                    month: 'long',
-                                    day: 'numeric'
-                                })}</td>
-                            </tr>
-                        `;
-                    });
-                    transactionTableBody.innerHTML = transactionHtml;
-                })
-                .catch(error => console.error('Error fetching transactions:', error));
-        } else {
-            transactionDetailsRow.style.display = 'none';
-        }
     }
 </script>
 @endsection
