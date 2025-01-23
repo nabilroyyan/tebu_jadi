@@ -13,6 +13,7 @@ use App\http\Controllers\DashboardController;
 Route::view('/', 'homeView/home')->middleware('guest');
 
 Route::view('/tes', 'viewAdmin.timbangan.index');
+Route::put('api/transaksis/{id}', [TbTransaksiController::class, 'updateStatus']);
 
 Auth::routes();
 
@@ -52,9 +53,7 @@ Route::group(['middleware' => ['can:hutang.show']], function() {
 Route::group(['middleware' => ['can:transaksi.list']], function() {
     Route::get('api/transaksis', [TbTransaksiController::class, 'apiIndex']);
 });
-Route::group(['middleware' => ['can:transaksi.update']], function() {
-    Route::put('api/transaksis/{id}', [TbTransaksiController::class, 'updateStatus']);
-});
+
 Route::group(['middleware' => ['can:transaksi.show']], function() {
     Route::get('transaksis/{id}', [TbTransaksiController::class, 'show']);
 });
