@@ -35,7 +35,7 @@ class CreateHutangsAndTransaksisTables extends Migration
             $table->enum('status', ['diverifikasi', 'belum diverifikasi'])->default('belum diverifikasi');
             $table->unsignedBigInteger('recid');
             $table->timestamps();
-        });
+        }); 
 
         // Add unique constraint to nomer_kontrak in
         // Schema::table('db_master_kebun', function (Bluepdb_master_kebunrint $table) {
